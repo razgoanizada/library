@@ -13,7 +13,6 @@ import raz.projects.library.dto.update.BookUpdateLocation;
 import raz.projects.library.service.BookService;
 import java.util.List;
 
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/books")
