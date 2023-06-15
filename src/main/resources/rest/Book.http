@@ -1,0 +1,29 @@
+### ALL BOOKS
+GET http://localhost:8081/books
+
+### get books page
+GET http://localhost:8081/books/page?pageSize=4&pageNo=0&sortBy=author&sortDir=asc
+
+### add book
+POST http://localhost:8081/books/add
+Content-Type: application/json
+
+{
+  "name": "dasd",
+  "location": "-1hgf2",
+  "author": "ra4 2344234"
+}
+
+###get book by id
+GET http://localhost:8081/books/25
+
+### update book - location
+PUT http://localhost:8081/books/144
+Content-Type: application/json
+
+{
+  "location": "floor -3"
+}
+
+### delete book by id
+DELETE http://localhost:8081/books/1502

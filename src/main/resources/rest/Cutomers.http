@@ -1,0 +1,19 @@
+### ALL cutomers
+GET http://localhost:8081/customers
+
+### add customer
+POST http://localhost:8081/customers/add
+Content-Type: application/json
+
+{
+  "firstName": "raz",
+  "lastName": "goanizada",
+  "email": "razgoanizada@gmail.com",
+  "tz": "318969432",
+  "phone": "0524046007",
+  "customerType": "simple"
+
+}
+
+###get customer by id
+GET http://localhost:8081/customers/1

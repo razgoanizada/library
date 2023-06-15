@@ -1,0 +1,25 @@
+### ALL librarians
+GET http://localhost:8081/librarians
+
+### get librarians page
+GET http://localhost:8081/librarians/page?pageNo=1&pageSize=5&sortBy=fullName&sortDir=asc
+
+### add librarian
+POST http://localhost:8081/librarians/add
+Content-Type: application/json
+Authorization: Basic raz admin
+
+{
+  "fullName": "fsdfdf",
+  "userName": "fsdfdf",
+  "password": "666666Raz!",
+  "email": "czxgfc@ere.com",
+  "phone": "052404607",
+  "tz": "313131310"
+}
+
+###get librarian by id
+GET http://localhost:8081/librarians/1
+
+### delete librarian by id
+DELETE http://localhost:8081/librarians/602
