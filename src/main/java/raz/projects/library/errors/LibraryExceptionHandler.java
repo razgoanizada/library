@@ -65,7 +65,7 @@ public class LibraryExceptionHandler {
                         forStatusAndDetail(HttpStatus.BAD_REQUEST, "Database save Failed");
 
         if (exception.getCause() instanceof ConstraintViolationException){
-            //TODO: ConstraintViolationException!
+
             problemDetail.setProperty("cause", "Constraint Violation");
         }
 
