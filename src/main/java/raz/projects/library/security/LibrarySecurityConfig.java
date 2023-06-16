@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@EnableMethodSecurity(securedEnabled = true)
 @EnableWebSecurity(debug = true)
 public class LibrarySecurityConfig {
 
@@ -25,8 +25,7 @@ public class LibrarySecurityConfig {
                     auth.requestMatchers("/librarians/**").authenticated();
                     auth.anyRequest().permitAll();
                 })
-                .httpBasic(a -> {
-                })
+                .httpBasic(basic -> basic.authenticationEntryPoint(new LibraryAuthenticationEntryPoint()))
                 .build();
     }
 
