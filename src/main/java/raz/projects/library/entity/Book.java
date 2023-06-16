@@ -40,5 +40,4 @@ public class Book {
     @CreationTimestamp
     private Date CreationDate;
 
-    // TODO: 05/06/2023 add category (enum)
 }
