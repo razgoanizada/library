@@ -22,6 +22,7 @@ public class LibrarianController {
     private final LibrarianService librarianService;
 
 
+    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
     @GetMapping
     public ResponseEntity<List<LibrarianResponseDto>> getLibrarian () {
 
@@ -40,7 +41,7 @@ public class LibrarianController {
     }
 
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
     @PostMapping("/add")
     public ResponseEntity<LibrarianResponseDto> addLibrarian (@RequestBody @Valid LibrarianRequestDto dto, UriComponentsBuilder uriComponentsBuilder) {
 

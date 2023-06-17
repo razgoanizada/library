@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import raz.projects.library.enums.Permissions;
 import raz.projects.library.validation.email.UniqueEmail;
 import raz.projects.library.validation.tz.UniqueTz;
 import raz.projects.library.validation.tz.UniqueTzIsrael;
@@ -33,8 +34,8 @@ public class LibrarianRequestDto {
             message = "The password must be at least 8 characters long, an uppercase letter, a lowercase letter, a number, and a character")
     private String password;
 
-    @UniqueEmail(fieldName = "librarian")
     @NotNull
+    @UniqueEmail(fieldName = "librarian")
     @Email(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,6}$")
     private String email;
 
@@ -47,4 +48,6 @@ public class LibrarianRequestDto {
     @UniqueTzIsrael
     private String tz;
 
+    @NotNull
+    private Permissions permission;
 }

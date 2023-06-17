@@ -1,8 +1,12 @@
 package raz.projects.library.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import raz.projects.library.enums.Permissions;
 
 import java.util.Set;
 
@@ -37,17 +41,6 @@ public class Librarian {
     @NotNull
     private String tz;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id",
-                    referencedColumnName = "id"
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id",
-                    referencedColumnName = "id"
-            )
-    )
-    private Set<Role> roles;
+    @NotNull
+    private Set<Permissions> permission;
 }

@@ -1,21 +1,24 @@
 ### ALL librarians
 GET http://localhost:8081/librarians
+Authorization: Basic raz 666666Raz!
 
 ### get librarians page
-GET http://localhost:8081/librarians/page?pageNo=1&pageSize=5&sortBy=fullName&sortDir=asc
+GET http://localhost:8081/librarians/page?pageNo=0&pageSize=5&sortBy=fullName&sortDir=asc
+Authorization: Basic admin 666666Raz!
 
 ### add librarian
 POST http://localhost:8081/librarians/add
 Content-Type: application/json
-Authorization: Basic raz admin
+Authorization: Basic admin 666666Raz!
 
 {
-  "fullName": "fsdfdf",
-  "userName": "fsdfdf",
+  "fullName": "raz",
+  "userName": "raz-admin",
   "password": "666666Raz!",
-  "email": "czxgfc@ere.com",
+  "email": "razgoanizfada@walla.com",
   "phone": "052404607",
-  "tz": "313131310"
+  "tz": "318559077",
+  "permission": "simple"
 }
 
 ###get librarian by id

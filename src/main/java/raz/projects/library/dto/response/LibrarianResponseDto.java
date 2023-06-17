@@ -1,9 +1,11 @@
 package raz.projects.library.dto.response;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import raz.projects.library.enums.Permissions;
+
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -15,4 +17,5 @@ public class LibrarianResponseDto {
     private String email;
     private String phone;
     private String tz;
+    private Set<Permissions> permission;
 }
