@@ -1,13 +1,13 @@
 ### ALL librarians
-GET http://localhost:8081/librarians
-Authorization: Basic raz 666666Raz!
+GET http://localhost:8081/online-library/librarians
+Authorization: Basic admin 666666Raz!
 
 ### get librarians page
-GET http://localhost:8081/librarians/page?pageNo=0&pageSize=5&sortBy=fullName&sortDir=asc
+GET http://localhost:8081/online-library/librarians/page?pageNo=0&pageSize=5&sortBy=fullName&sortDir=asc
 Authorization: Basic admin 666666Raz!
 
 ### add librarian
-POST http://localhost:8081/librarians/add
+POST http://localhost:8081/online-library/librarians/add
 Content-Type: application/json
 Authorization: Basic admin 666666Raz!
 
@@ -22,7 +22,9 @@ Authorization: Basic admin 666666Raz!
 }
 
 ###get librarian by id
-GET http://localhost:8081/librarians/1
+GET http://localhost:8081/online-library/librarians/1
+Authorization: Basic admin 666666Raz!
 
 ### delete librarian by id
-DELETE http://localhost:8081/librarians/602
+DELETE http://localhost:8081/online-library/librarians/602
+Authorization: Basic admin 666666Raz!

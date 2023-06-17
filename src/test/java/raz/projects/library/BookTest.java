@@ -4,8 +4,6 @@ package raz.projects.library;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
@@ -16,7 +14,6 @@ import raz.projects.library.dto.request.BookRequestDto;
 import raz.projects.library.dto.response.BookResponseDto;
 import raz.projects.library.dto.update.BookUpdateLocation;
 import raz.projects.library.repository.BookRepository;
-
 
 import java.util.Objects;
 
@@ -31,7 +28,7 @@ class BookTest {
     @Autowired
     BookRepository bookRepository;
 
-    private static final String getBooks = "/books";
+    private static final String getBooks = "/online-library/books";
     private static final String addBook = getBooks + "/add";
 
     @BeforeEach

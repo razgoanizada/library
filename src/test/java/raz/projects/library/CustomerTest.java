@@ -25,7 +25,7 @@ public class CustomerTest {
     @Autowired
     CustomerRepository customerRepository;
 
-    private static final String getCustomers = "/customers";
+    private static final String getCustomers = "/online-library/customers";
 
     private static final String addCustomer = getCustomers + "/add";
 

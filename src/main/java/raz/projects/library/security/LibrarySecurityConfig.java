@@ -21,8 +21,8 @@ public class LibrarySecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/localhost:8081/login/**").permitAll();
-                    auth.requestMatchers("/librarians/**").authenticated();
+                    auth.requestMatchers("/online-library/login/**").permitAll();
+                    auth.requestMatchers("/online-library/**").authenticated();
                     auth.anyRequest().permitAll();
                 })
                 .httpBasic(basic -> basic.authenticationEntryPoint(new LibraryAuthenticationEntryPoint()))

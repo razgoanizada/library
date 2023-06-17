@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/librarians")
+@RequestMapping("/online-library/librarians")
 public class LibrarianController {
 
     private final LibrarianService librarianService;
@@ -29,6 +29,7 @@ public class LibrarianController {
         return ResponseEntity.ok(librarianService.getLibrarians());
     }
 
+    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
     @GetMapping ("/page")
     public ResponseEntity<LibrarianPageDto> getLibrarianPage (
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
@@ -53,6 +54,7 @@ public class LibrarianController {
 
     }
 
+    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
     @GetMapping("/{id}")
     public ResponseEntity<LibrarianResponseDto> getLibrarianById (@PathVariable @Valid @NotNull Long id) {
         return ResponseEntity.ok(librarianService.getLibrarianById(id));
@@ -60,6 +62,7 @@ public class LibrarianController {
 
     // TODO 05/06/2023 add update
 
+    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteLibrarianById (@PathVariable Long id) {
         return ResponseEntity.accepted().body(librarianService.deleteLibrarianById(id));

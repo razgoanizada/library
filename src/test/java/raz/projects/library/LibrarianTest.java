@@ -24,7 +24,7 @@ class LibrarianTest {
     @Autowired
     LibrarianRepository librarianRepository;
 
-    private static final String getLibrarians = "/librarians";
+    private static final String getLibrarians = "/online-library/librarians";
     private static final String addLibrarian = getLibrarians + "/add";
 
     @BeforeEach

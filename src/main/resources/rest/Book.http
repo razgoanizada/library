@@ -1,12 +1,15 @@
 ### ALL BOOKS
-GET http://localhost:8081/books
+GET http://localhost:8081/online-library/books
+Authorization: Basic admin 666666Raz!
 
 ### get books page
-GET http://localhost:8081/books/page?pageSize=4&pageNo=0&sortBy=author&sortDir=asc
+GET http://localhost:8081/online-library/books/page?pageSize=4&pageNo=0&sortBy=author&sortDir=asc
+Authorization: Basic raz-admin 666666Raz!
 
 ### add book
-POST http://localhost:8081/books/add
+POST http://localhost:8081/online-library/books/add
 Content-Type: application/json
+Authorization: Basic raz-admin 666666Raz!
 
 {
   "name": "dasd",
@@ -15,15 +18,18 @@ Content-Type: application/json
 }
 
 ###get book by id
-GET http://localhost:8081/books/25
+GET http://localhost:8081/online-library/books/1
+Authorization: Basic raz-admin 666666Raz!
 
 ### update book - location
-PUT http://localhost:8081/books/144
+PUT http://localhost:8081/online-library/books/144
 Content-Type: application/json
+Authorization: Basic raz-admin 666666Raz!
 
 {
   "location": "floor -3"
 }
 
 ### delete book by id
-DELETE http://localhost:8081/books/1502
+DELETE http://localhost:8081/online-library/books/1502
+Authorization: Basic raz-admin 666666Raz!
