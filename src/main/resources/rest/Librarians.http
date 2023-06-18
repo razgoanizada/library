@@ -25,6 +25,16 @@ Authorization: Basic admin 666666Raz!
 GET http://localhost:8081/online-library/librarians/1
 Authorization: Basic admin 666666Raz!
 
+### change password
+PUT http://localhost:8081/online-library/librarians/change-password/252
+Content-Type: application/json
+Authorization: Basic admin 666666Raz!
+
+{
+  "newPassword": "666666Raz!",
+  "repeatNewPassword": "666666Raz"
+}
+
 ### delete librarian by id
 DELETE http://localhost:8081/online-library/librarians/602
 Authorization: Basic admin 666666Raz!

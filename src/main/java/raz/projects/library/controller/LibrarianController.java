@@ -10,6 +10,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import raz.projects.library.dto.pages.LibrarianPageDto;
 import raz.projects.library.dto.request.LibrarianRequestDto;
 import raz.projects.library.dto.response.LibrarianResponseDto;
+import raz.projects.library.dto.update.LibrarianChangePassword;
 import raz.projects.library.service.LibrarianService;
 
 import java.util.List;
@@ -60,7 +61,12 @@ public class LibrarianController {
         return ResponseEntity.ok(librarianService.getLibrarianById(id));
     }
 
-    // TODO 05/06/2023 add update
+    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
+    @PutMapping("/change-password/{id}")
+    public ResponseEntity<LibrarianResponseDto> changePassword (@PathVariable @Valid @NotNull Long id,
+                                                               @Valid @RequestBody LibrarianChangePassword dto) {
+        return ResponseEntity.accepted().body(librarianService.librarianChangePassword(dto, id));
+    }
 
     @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
     @DeleteMapping("/{id}")

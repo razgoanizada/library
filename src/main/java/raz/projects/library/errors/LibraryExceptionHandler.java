@@ -45,12 +45,13 @@ public class LibraryExceptionHandler {
                 ProblemDetail.
                         forStatusAndDetail(HttpStatus.BAD_REQUEST, "Validation Failed");
 
+            exception.getBindingResult().getFieldErrors().forEach(fieldError -> {
+                problemDetail.setProperty("message", fieldError.getDefaultMessage());
+                problemDetail.setProperty("Validation Failed for property", fieldError.getField());
+                problemDetail.setProperty("rejectedValue", fieldError.getRejectedValue());
+            });
 
-        exception.getBindingResult().getFieldErrors().forEach(fieldError -> {
-            problemDetail.setProperty("Validation Failed for property", fieldError.getField());
-            problemDetail.setProperty("message", fieldError.getDefaultMessage());
-            problemDetail.setProperty("rejectedValue", fieldError.getRejectedValue());
-        });
+
 
 
         problemDetail.setProperty("timestamp", LocalDateTime.now());

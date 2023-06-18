@@ -24,7 +24,7 @@ Authorization: Basic raz-admin 666666Raz!
 ### update book - location
 PUT http://localhost:8081/online-library/books/144
 Content-Type: application/json
-Authorization: Basic raz-admin 666666Raz!
+Authorization: Basic raz 666666Raz!
 
 {
   "location": "floor -3"
