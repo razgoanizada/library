@@ -11,6 +11,7 @@ import raz.projects.library.dto.pages.LibrarianPageDto;
 import raz.projects.library.dto.request.LibrarianRequestDto;
 import raz.projects.library.dto.response.LibrarianResponseDto;
 import raz.projects.library.dto.update.LibrarianChangePassword;
+import raz.projects.library.dto.update.LibrarianUpdate;
 import raz.projects.library.service.LibrarianService;
 
 import java.util.List;
@@ -59,6 +60,13 @@ public class LibrarianController {
     @GetMapping("/{id}")
     public ResponseEntity<LibrarianResponseDto> getLibrarianById (@PathVariable @Valid @NotNull Long id) {
         return ResponseEntity.ok(librarianService.getLibrarianById(id));
+    }
+
+    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
+    @PutMapping("/{id}")
+    public ResponseEntity<LibrarianResponseDto> updateLibrarianById (@PathVariable @Valid @NotNull Long id,
+                                                                @Valid @RequestBody LibrarianUpdate dto) {
+        return ResponseEntity.accepted().body(librarianService.updateLibrarianById(dto, id));
     }
 
     @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")

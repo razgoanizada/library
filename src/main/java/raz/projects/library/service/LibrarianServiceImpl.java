@@ -17,6 +17,7 @@ import raz.projects.library.dto.pages.LibrarianPageDto;
 import raz.projects.library.dto.request.LibrarianRequestDto;
 import raz.projects.library.dto.response.LibrarianResponseDto;
 import raz.projects.library.dto.update.LibrarianChangePassword;
+import raz.projects.library.dto.update.LibrarianUpdate;
 import raz.projects.library.entity.Librarian;
 import raz.projects.library.enums.Permissions;
 import raz.projects.library.errors.BadRequestException;
@@ -67,22 +68,7 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
 
         Set<Permissions> permissions = new HashSet<>();
 
-        switch (dto.getPermission()) {
-            case admin -> {
-                permissions.add(Permissions.admin);
-                permissions.add(Permissions.pro);
-                permissions.add(Permissions.simple);
-            }
-
-            case pro -> {
-                permissions.add(Permissions.pro);
-                permissions.add(Permissions.simple);
-            }
-
-            case simple ->
-                permissions.add(Permissions.simple);
-
-        }
+        permissions(dto.getPermission(), permissions);
 
         var librarian = Librarian.builder()
                 .fullName(dto.getFullName())
@@ -99,6 +85,7 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
 
     }
 
+
     @Override
     public LibrarianResponseDto getLibrarianById(Long id) {
 
@@ -106,6 +93,27 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
                 () -> new ResourceNotFoundException( "get librarian" ,id, "This librarian doesn't exist in the library")
         );
         return mapper.map(librarian, LibrarianResponseDto.class);
+    }
+
+    @Override
+    public LibrarianResponseDto updateLibrarianById(LibrarianUpdate dto, Long id) {
+
+
+        var librarian = librarianRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException( "get librarian" ,id, "This librarian doesn't exist in the library")
+        );
+
+        Set<Permissions> permissions = new HashSet<>();
+
+        permissions(dto.getPermission(), permissions);
+
+        librarian.setFullName(dto.getFullName());
+        librarian.setPhone(dto.getPhone());
+        librarian.setPermission(permissions);
+
+        var saved = librarianRepository.save(librarian);
+
+        return mapper.map(saved, LibrarianResponseDto.class);
     }
 
     public LibrarianResponseDto librarianChangePassword(LibrarianChangePassword dto, Long id){
@@ -145,5 +153,28 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
 
         var roles = librarian.getPermission().stream().map(r -> new SimpleGrantedAuthority(r.name())).toList();
         return new User(librarian.getUserName(), librarian.getPassword(), roles);
+    }
+
+
+    // help method
+
+    private static void permissions(Permissions permission, Set<Permissions> permissions) {
+
+        switch (permission) {
+            case admin -> {
+                permissions.add(Permissions.admin);
+                permissions.add(Permissions.pro);
+                permissions.add(Permissions.simple);
+            }
+
+            case pro -> {
+                permissions.add(Permissions.pro);
+                permissions.add(Permissions.simple);
+            }
+
+            case simple ->
+                    permissions.add(Permissions.simple);
+
+        }
     }
 }

@@ -4,7 +4,7 @@ Authorization: Basic admin 666666Raz!
 
 ### get librarians page
 GET http://localhost:8081/online-library/librarians/page?pageNo=0&pageSize=5&sortBy=fullName&sortDir=asc
-Authorization: Basic admin 666666Raz!
+Authorization: Basic raz 666666Raz!
 
 ### add librarian
 POST http://localhost:8081/online-library/librarians/add
@@ -24,6 +24,17 @@ Authorization: Basic admin 666666Raz!
 ###get librarian by id
 GET http://localhost:8081/online-library/librarians/1
 Authorization: Basic admin 666666Raz!
+
+### update librarian
+PUT http://localhost:8081/online-library/librarians/302
+Content-Type: application/json
+Authorization: Basic admin 666666Raz!
+
+{
+  "fullName": "raz cohen ",
+  "phone": "0524046007",
+  "permission": "pro"
+}
 
 ### change password
 PUT http://localhost:8081/online-library/librarians/change-password/252
