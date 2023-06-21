@@ -8,14 +8,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import raz.projects.library.dto.pages.CustomerPageDto;
-import raz.projects.library.dto.pages.LibrarianPageDto;
 import raz.projects.library.dto.request.CustomerRequestDto;
 import raz.projects.library.dto.response.CustomerResponseDto;
-import raz.projects.library.dto.response.LibrarianResponseDto;
 import raz.projects.library.entity.Customer;
-import raz.projects.library.entity.Librarian;
+import raz.projects.library.entity.CustomerType;
 import raz.projects.library.errors.ResourceNotFoundException;
 import raz.projects.library.repository.CustomerRepository;
+import raz.projects.library.repository.CustomerTypeRepository;
 
 import java.util.List;
 
@@ -24,12 +23,13 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final CustomerTypeRepository customerTypeRepository;
     private final ModelMapper mapper;
     @Override
     public List<CustomerResponseDto> getCustomers() {
         return customerRepository.findAll()
                 .stream()
-                .map(librarian -> mapper.map(librarian, CustomerResponseDto.class))
+                .map(customer -> mapper.map(customer, CustomerResponseDto.class))
                 .toList();
     }
 
@@ -56,10 +56,22 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerResponseDto addCustomer(CustomerRequestDto dto) {
 
-        var customer = mapper.map(dto, Customer.class);
+        CustomerType customerType = customerTypeRepository.findCustomerTypeByNameIgnoreCase(dto.getCustomerTypeName());
 
-        var saveCustomer = customerRepository.save(customer);
-        return mapper.map(saveCustomer, CustomerResponseDto.class);
+        if (customerType == null) {
+            throw new ResourceNotFoundException(
+                    "add customer type", dto.getCustomerTypeName(), "This customer type doesn't exist in the library");
+        }
+
+        var customer = mapper.map(dto, Customer.class);
+        customer.setCustomerType(customerType);
+        customer.setActive(true);
+
+       customerRepository.save(customer);
+        var response =  mapper.map(customer, CustomerResponseDto.class);
+        response.setCustomerTypeName(customer.getCustomerType().getName());
+
+        return response;
 
     }
 

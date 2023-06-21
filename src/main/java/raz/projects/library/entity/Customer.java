@@ -1,13 +1,9 @@
 package raz.projects.library.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import raz.projects.library.enums.CustomerType;
 
 @Entity
 @Getter
@@ -37,7 +33,8 @@ public class Customer {
     @NotNull
     private String tz;
 
-    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "customer_type_id")
     private CustomerType customerType;
 
     @NotNull

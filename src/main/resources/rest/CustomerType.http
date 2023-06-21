@@ -1,0 +1,9 @@
+### add customer type
+POST http://localhost:8081/online-library/settings/customer-type/add
+Content-Type: application/json
+Authorization: Basic admin 666666Raz!
+
+{
+  "name": "VIP",
+  "days": 60
+}

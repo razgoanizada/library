@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import raz.projects.library.enums.CustomerType;
 import raz.projects.library.validation.email.UniqueEmail;
 import raz.projects.library.validation.tz.UniqueTz;
 import raz.projects.library.validation.tz.UniqueTzIsrael;
@@ -43,7 +42,6 @@ public class CustomerRequestDto {
     private String tz;
 
     @NotNull
-    private CustomerType customerType;
+    private String customerTypeName;
 
-    private boolean isActive;
 }
