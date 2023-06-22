@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import raz.projects.library.enums.Permissions;
 import raz.projects.library.validation.email.UniqueEmail;
 import raz.projects.library.validation.tz.UniqueTz;
 import raz.projects.library.validation.tz.UniqueTzIsrael;
@@ -49,5 +48,5 @@ public class LibrarianRequestDto {
     private String tz;
 
     @NotNull
-    private Permissions permission;
+    private String permission;
 }

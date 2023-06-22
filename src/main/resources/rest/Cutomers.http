@@ -1,10 +1,10 @@
 ### ALL cutomers
 GET http://localhost:8081/online-library/customers
-Authorization: Basic raz 666666Raz!
+Authorization: Basic simple 666666Raz!
 
 ### add customer
 POST http://localhost:8081/online-library/customers/add
-Authorization: Basic admin 666666Raz!
+Authorization: Basic simple 666666Raz!
 Content-Type: application/json
 
 {
@@ -18,4 +18,4 @@ Content-Type: application/json
 
 ###get customer by id
 GET http://localhost:8081/online-library/customers/1
-Authorization: Basic raz 666666Raz!
+Authorization: Basic simple 666666Raz!

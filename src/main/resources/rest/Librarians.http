@@ -12,12 +12,12 @@ Content-Type: application/json
 Authorization: Basic admin 666666Raz!
 
 {
-  "fullName": "raz",
-  "userName": "raz-goa",
+  "fullName": "raz goanizada",
+  "userName": "simple",
   "password": "666666Raz!",
-  "email": "razgoanizfdda@walla.com",
+  "email": "razgoanizadaa@walla.com",
   "phone": "052404607",
-  "tz": "313131120",
+  "tz": "987654324",
   "permission": "simple"
 }
 
@@ -43,7 +43,7 @@ Authorization: Basic admin 666666Raz!
 
 {
   "newPassword": "666666Raz!",
-  "repeatNewPassword": "666666Raz"
+  "repeatNewPassword": "666666Raz!"
 }
 
 ### delete librarian by id

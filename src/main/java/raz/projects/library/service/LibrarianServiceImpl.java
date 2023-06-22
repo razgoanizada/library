@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,12 +20,14 @@ import raz.projects.library.dto.response.LibrarianResponseDto;
 import raz.projects.library.dto.update.LibrarianChangePassword;
 import raz.projects.library.dto.update.LibrarianUpdate;
 import raz.projects.library.entity.Librarian;
-import raz.projects.library.enums.Permissions;
+import raz.projects.library.entity.Permissions;
 import raz.projects.library.errors.BadRequestException;
 import raz.projects.library.errors.ResourceNotFoundException;
 import raz.projects.library.repository.LibrarianRepository;
+import raz.projects.library.repository.PermissionsRepository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -32,6 +35,7 @@ import java.util.*;
 public class LibrarianServiceImpl implements LibrarianService, UserDetailsService {
 
     private final LibrarianRepository librarianRepository;
+    private final PermissionsRepository permissionsRepository;
     private final ModelMapper mapper;
     private final PasswordEncoder passwordEncoder;
 
@@ -66,22 +70,25 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
     @Override
     public LibrarianResponseDto addLibrarian (LibrarianRequestDto dto) {
 
-        Set<Permissions> permissions = new HashSet<>();
+        Permissions permission =  permissionsRepository.findPermissionsByPermissionIgnoreCase(dto.getPermission());
 
-        permissions(dto.getPermission(), permissions);
+        if (permission == null) {
+            throw new BadRequestException(
+                    "add librarian - permissions",
+                    dto.getPermission(),
+                    "This permissions doesn't exist in the library");
+        }
 
-        var librarian = Librarian.builder()
-                .fullName(dto.getFullName())
-                .userName(dto.getUserName())
-                .password(passwordEncoder.encode(dto.getPassword()))
-                .email(dto.getEmail())
-                .phone(dto.getPhone())
-                .tz(dto.getTz())
-                .permission(permissions)
-                .build();
+        var librarian =  mapper.map(dto, Librarian.class);
+        librarian.setPermission(permission);
+        librarian.setPassword(passwordEncoder.encode(dto.getPassword()));
 
-        var saveLibrarian = librarianRepository.save(librarian);
-        return mapper.map(saveLibrarian, LibrarianResponseDto.class);
+        librarianRepository.save(librarian);
+
+        var response = mapper.map(librarian, LibrarianResponseDto.class);
+        response.setPermission(librarian.getPermission().getPermission());
+
+        return response;
 
     }
 
@@ -103,17 +110,17 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
                 () -> new ResourceNotFoundException( "get librarian" ,id, "This librarian doesn't exist in the library")
         );
 
-        Set<Permissions> permissions = new HashSet<>();
-
-        permissions(dto.getPermission(), permissions);
 
         librarian.setFullName(dto.getFullName());
         librarian.setPhone(dto.getPhone());
-        librarian.setPermission(permissions);
+        librarian.getPermission().setPermission(dto.getPermission());
 
         var saved = librarianRepository.save(librarian);
 
-        return mapper.map(saved, LibrarianResponseDto.class);
+       var response = mapper.map(saved, LibrarianResponseDto.class);
+       response.setPermission(librarian.getPermission().getPermission());
+
+       return response;
     }
 
     public LibrarianResponseDto librarianChangePassword(LibrarianChangePassword dto, Long id){
@@ -151,30 +158,12 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
         var librarian = librarianRepository.findLibrarianByUserNameIgnoreCase(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
 
-        var roles = librarian.getPermission().stream().map(r -> new SimpleGrantedAuthority(r.name())).toList();
-        return new User(librarian.getUserName(), librarian.getPassword(), roles);
+        List<GrantedAuthority> permissions = new ArrayList<>();
+        permissions.add(new SimpleGrantedAuthority(librarian.getPermission().getPermission()));
+
+
+        return new User(librarian.getUserName(), librarian.getPassword(), permissions);
     }
 
 
-    // help method
-
-    private static void permissions(Permissions permission, Set<Permissions> permissions) {
-
-        switch (permission) {
-            case admin -> {
-                permissions.add(Permissions.admin);
-                permissions.add(Permissions.pro);
-                permissions.add(Permissions.simple);
-            }
-
-            case pro -> {
-                permissions.add(Permissions.pro);
-                permissions.add(Permissions.simple);
-            }
-
-            case simple ->
-                    permissions.add(Permissions.simple);
-
-        }
-    }
 }

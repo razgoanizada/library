@@ -23,7 +23,6 @@ public class LibrarySecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/online-library/login/**").permitAll();
                     auth.requestMatchers("/online-library/**").authenticated();
-                    auth.anyRequest().permitAll();
                 })
                 .httpBasic(basic -> basic.authenticationEntryPoint(new LibraryAuthenticationEntryPoint()))
                 .build();

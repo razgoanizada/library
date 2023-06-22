@@ -15,12 +15,12 @@ import raz.projects.library.service.CustomerTypeService;
 
 @RestController
 @RequiredArgsConstructor
+@PreAuthorize("hasAuthority('admin')")
 @RequestMapping("/online-library/settings/customer-type")
 public class CustomerTypeController {
 
     private final CustomerTypeService customerTypeService;
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
     @PostMapping("/add")
     public ResponseEntity<CustomerTypeResponseDto> addCustomerType (
             @RequestBody @Valid CustomerTypeRequestDto dto, UriComponentsBuilder uriComponentsBuilder) {
