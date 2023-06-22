@@ -4,6 +4,6 @@ Content-Type: application/json
 Authorization: Basic admin 666666Raz!
 
 {
-  "name": "VIP",
+  "name": "rr",
   "days": 60
 }

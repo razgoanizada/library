@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import raz.projects.library.dto.pages.CustomerPageDto;
@@ -21,14 +20,13 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).simple)")
+
     @GetMapping
     public ResponseEntity<List<CustomerResponseDto>> getCustomers () {
 
         return ResponseEntity.ok(customerService.getCustomers());
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).simple)")
     @GetMapping ("/page")
     public ResponseEntity<CustomerPageDto> getCustomersPage (
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
@@ -41,7 +39,6 @@ public class CustomerController {
     }
 
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).simple)")
     @PostMapping("/add")
     public ResponseEntity<CustomerResponseDto> addCustomer (@RequestBody @Valid CustomerRequestDto dto, UriComponentsBuilder uriComponentsBuilder) {
 
@@ -53,7 +50,6 @@ public class CustomerController {
 
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).simple)")
     @GetMapping("/{id}")
     public ResponseEntity<CustomerResponseDto> getCustomerById (@PathVariable @Valid @NotNull Long id) {
         return ResponseEntity.ok(customerService.getCustomerById(id));

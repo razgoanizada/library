@@ -23,14 +23,12 @@ public class BookController {
     private final BookService bookService;
 
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).simple)")
     @GetMapping()
     public ResponseEntity<List<BookResponseDto>> getBooks () {
 
         return ResponseEntity.ok(bookService.getBooks());
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).simple)")
     @GetMapping ("/page")
     public ResponseEntity<BookPageDto> getBooksPage (
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
@@ -42,7 +40,7 @@ public class BookController {
         return ResponseEntity.ok(bookService.getBooksPage(pageNo, pageSize, sortBy, sortDir));
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).pro)")
+    @PreAuthorize("hasAnyAuthority('admin', 'pro')")
     @PostMapping("/add")
     public ResponseEntity<BookResponseDto> addBook (@RequestBody @Valid BookRequestDto dto, UriComponentsBuilder uriComponentsBuilder) {
 
@@ -53,20 +51,19 @@ public class BookController {
         return ResponseEntity.created(uri).body(responseDto);
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).simple)")
     @GetMapping("/{id}")
     public ResponseEntity<BookResponseDto> getBookById (@PathVariable @Valid @NotNull Long id) {
         return ResponseEntity.ok(bookService.getBookById(id));
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).pro)")
+    @PreAuthorize("hasAnyAuthority('admin', 'pro')")
     @PutMapping("/{id}")
     public ResponseEntity<BookResponseDto> updateBookLocation (@PathVariable @Valid @NotNull Long id,
                                                                @Valid @RequestBody BookUpdateLocation dto) {
         return ResponseEntity.accepted().body(bookService.updateBookLocation(dto, id));
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).pro)")
+    @PreAuthorize("hasAnyAuthority('admin', 'pro')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteBookById (@PathVariable @Valid @NotNull Long id) {
         return ResponseEntity.accepted().body(bookService.deleteBookById(id));

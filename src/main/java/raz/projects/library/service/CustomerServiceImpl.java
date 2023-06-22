@@ -61,7 +61,9 @@ public class CustomerServiceImpl implements CustomerService {
 
         if (customerType == null) {
             throw new BadRequestException(
-                    "add customer type name", dto.getCustomerTypeName(), "This customer type doesn't exist in the library");
+                    "add customer type name",
+                    dto.getCustomerTypeName(),
+                    "This customer type doesn't exist in the library");
         }
 
         var customer = mapper.map(dto, Customer.class);

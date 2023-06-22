@@ -18,20 +18,21 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@PreAuthorize("hasAuthority('admin')")
 @RequestMapping("/online-library/librarians")
 public class LibrarianController {
 
     private final LibrarianService librarianService;
 
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
+
     @GetMapping
     public ResponseEntity<List<LibrarianResponseDto>> getLibrarian () {
 
         return ResponseEntity.ok(librarianService.getLibrarians());
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
+
     @GetMapping ("/page")
     public ResponseEntity<LibrarianPageDto> getLibrarianPage (
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
@@ -44,7 +45,7 @@ public class LibrarianController {
     }
 
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
+
     @PostMapping("/add")
     public ResponseEntity<LibrarianResponseDto> addLibrarian (@RequestBody @Valid LibrarianRequestDto dto, UriComponentsBuilder uriComponentsBuilder) {
 
@@ -56,27 +57,27 @@ public class LibrarianController {
 
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
+
     @GetMapping("/{id}")
     public ResponseEntity<LibrarianResponseDto> getLibrarianById (@PathVariable @Valid @NotNull Long id) {
         return ResponseEntity.ok(librarianService.getLibrarianById(id));
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
+
     @PutMapping("/{id}")
     public ResponseEntity<LibrarianResponseDto> updateLibrarianById (@PathVariable @Valid @NotNull Long id,
                                                                 @Valid @RequestBody LibrarianUpdate dto) {
         return ResponseEntity.accepted().body(librarianService.updateLibrarianById(dto, id));
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
+
     @PutMapping("/change-password/{id}")
     public ResponseEntity<LibrarianResponseDto> changePassword (@PathVariable @Valid @NotNull Long id,
                                                                @Valid @RequestBody LibrarianChangePassword dto) {
         return ResponseEntity.accepted().body(librarianService.librarianChangePassword(dto, id));
     }
 
-    @PreAuthorize("hasAuthority(T(raz.projects.library.enums.Permissions).admin)")
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteLibrarianById (@PathVariable Long id) {
         return ResponseEntity.accepted().body(librarianService.deleteLibrarianById(id));

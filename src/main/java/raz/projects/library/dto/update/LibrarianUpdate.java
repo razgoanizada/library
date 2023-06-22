@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import raz.projects.library.enums.Permissions;
 
 @Data
 @Builder
@@ -24,5 +23,5 @@ public class LibrarianUpdate {
     private String phone;
 
     @NotNull
-    private Permissions permission;
+    private String permission;
 }
