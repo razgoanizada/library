@@ -10,10 +10,10 @@ Content-Type: application/json
 {
   "firstName": "raz",
   "lastName": "cohen",
-  "email": "radfgadaa@gmail.com",
-  "tz": "987654324",
+  "email": "radfgdfadaa@gmail.com",
+  "tz": "321321325",
   "phone": "0524046007",
-  "customerTypeName": "pro"
+  "customerTypeName": "pr"
 }
 
 ###get customer by id

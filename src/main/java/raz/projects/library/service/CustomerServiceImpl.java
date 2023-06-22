@@ -12,6 +12,7 @@ import raz.projects.library.dto.request.CustomerRequestDto;
 import raz.projects.library.dto.response.CustomerResponseDto;
 import raz.projects.library.entity.Customer;
 import raz.projects.library.entity.CustomerType;
+import raz.projects.library.errors.BadRequestException;
 import raz.projects.library.errors.ResourceNotFoundException;
 import raz.projects.library.repository.CustomerRepository;
 import raz.projects.library.repository.CustomerTypeRepository;
@@ -59,8 +60,8 @@ public class CustomerServiceImpl implements CustomerService {
         CustomerType customerType = customerTypeRepository.findCustomerTypeByNameIgnoreCase(dto.getCustomerTypeName());
 
         if (customerType == null) {
-            throw new ResourceNotFoundException(
-                    "add customer type", dto.getCustomerTypeName(), "This customer type doesn't exist in the library");
+            throw new BadRequestException(
+                    "add customer type name", dto.getCustomerTypeName(), "This customer type doesn't exist in the library");
         }
 
         var customer = mapper.map(dto, Customer.class);
