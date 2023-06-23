@@ -33,6 +33,10 @@ public class BadRequestException extends LibraryException{
         this(resourceName, String.valueOf(resourceId), "Not Found");
     }
 
+    public BadRequestException(String resourceName, String message) {
+        super(message);
+        this.resourceName = resourceName;
+    }
 
     public BadRequestException(long resourceId) {
         this("Resource", String.valueOf(resourceId), "Not Found");

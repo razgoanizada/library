@@ -1,0 +1,8 @@
+### sign in
+POST http://localhost:8081/online-library/login
+Content-Type: application/json
+
+{
+  "userName": "admin",
+  "password": "666666Raz!"
+}

@@ -1,6 +1,6 @@
 ### ALL BOOKS
 GET http://localhost:8081/online-library/books
-Authorization: Basic simple 666666Raz!
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NzUyNzQ4NiwiZXhwIjoxNjg3NjEzODg2fQ.NqGVWpJGBLfj0ZoeIGnDxT0DuxWcYNLSh2-2ciRnbJwmDz2PiKPfC-y7DBxk0UmyRoFZe9fudwZ6kWGmrHevOQ
 
 ### get books page
 GET http://localhost:8081/online-library/books/page?pageSize=4&pageNo=0&sortBy=author&sortDir=asc
