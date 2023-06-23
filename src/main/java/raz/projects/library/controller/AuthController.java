@@ -32,7 +32,7 @@ public class AuthController {
         var givenPassword = dto.getPassword();
 
         if (passwordEncoder.matches(givenPassword, savedPassword)) {
-            //grant:
+
             var token = jwtProvider.generateToken(user.getUsername());
 
             return ResponseEntity.ok(Map.of("jwt", token));

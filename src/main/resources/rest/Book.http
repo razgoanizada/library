@@ -4,12 +4,12 @@ Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NzUyN
 
 ### get books page
 GET http://localhost:8081/online-library/books/page?pageSize=4&pageNo=0&sortBy=author&sortDir=asc
-Authorization: Basic simple 666666Raz!
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaW1wbGUiLCJpYXQiOjE2ODc1MzAyNTYsImV4cCI6MTY4NzYxNjY1Nn0.K5xdusLwvHDNETqie_fK1tLuk_mdQUDUArrqCd8_fIykm1gqw8NgQgTolOZC4bofgVXdINqrv1tQvExCgD5jZg
 
 ### add book
 POST http://localhost:8081/online-library/books/add
 Content-Type: application/json
-Authorization: Basic pro 666666Raz!
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaW1wbGUiLCJpYXQiOjE2ODc1MzAyNTYsImV4cCI6MTY4NzYxNjY1Nn0.K5xdusLwvHDNETqie_fK1tLuk_mdQUDUArrqCd8_fIykm1gqw8NgQgTolOZC4bofgVXdINqrv1tQvExCgD5jZg
 
 {
   "name": "name1",

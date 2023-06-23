@@ -9,6 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import raz.projects.library.dto.pages.CustomerPageDto;
 import raz.projects.library.dto.request.CustomerRequestDto;
 import raz.projects.library.dto.response.CustomerResponseDto;
+import raz.projects.library.dto.update.CustomerUpdate;
 import raz.projects.library.service.CustomerService;
 
 import java.util.List;
@@ -54,5 +55,19 @@ public class CustomerController {
     public ResponseEntity<CustomerResponseDto> getCustomerById (@PathVariable @Valid @NotNull Long id) {
         return ResponseEntity.ok(customerService.getCustomerById(id));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomerResponseDto> updateCustomer (@PathVariable @Valid @NotNull Long id,
+                                                               @Valid @RequestBody CustomerUpdate dto) {
+
+        return ResponseEntity.accepted().body(customerService.updateCustomerById(dto, id));
+    }
+
+    @PutMapping("/active/{id}")
+    public ResponseEntity<CustomerResponseDto> updateIsActive (@PathVariable @Valid @NotNull Long id) {
+
+       return ResponseEntity.accepted().body(customerService.isActive(id));
+    }
+
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import raz.projects.library.dto.pages.CustomerPageDto;
 import raz.projects.library.dto.request.CustomerRequestDto;
 import raz.projects.library.dto.response.CustomerResponseDto;
+import raz.projects.library.dto.update.CustomerUpdate;
 import raz.projects.library.entity.Customer;
 import raz.projects.library.entity.CustomerType;
 import raz.projects.library.errors.BadRequestException;
@@ -85,5 +86,37 @@ public class CustomerServiceImpl implements CustomerService {
                 () -> new ResourceNotFoundException("get customer" ,id, "This customer doesn't exist in the library")
         );
         return mapper.map(customer, CustomerResponseDto.class);
+    }
+
+    @Override
+    public CustomerResponseDto updateCustomerById(CustomerUpdate dto, long id) {
+
+        var customer = customerRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("update customer" ,id, "This customer doesn't exist in the library")
+        );
+
+        customer.setFirstName(dto.getFirstName());
+        customer.setLastName(dto.getLastName());
+        customer.setPhone(dto.getPhone());
+        customer.getCustomerType().setName(dto.getCustomerTypeName());
+
+        var response = mapper.map(customer, CustomerResponseDto.class);
+        response.setCustomerTypeName(customer.getCustomerType().getName());
+
+        return response;
+    }
+
+    @Override
+    public CustomerResponseDto isActive(long id) {
+
+        var customer = customerRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("update customer - is active" ,id, "This customer doesn't exist in the library")
+        );
+
+        customer.setActive(!customer.isActive());
+
+        var save = customerRepository.save(customer);
+
+        return mapper.map(save, CustomerResponseDto.class);
     }
 }

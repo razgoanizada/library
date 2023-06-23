@@ -17,5 +17,21 @@ Content-Type: application/json
 }
 
 ###get customer by id
-GET http://localhost:8081/online-library/customers/1
+GET http://localhost:8081/online-library/customers/2
+Authorization: Basic simple 666666Raz!
+
+### udpdate customer by id
+PUT http://localhost:8081/online-library/customers/2
+Authorization: Basic simple 666666Raz!
+Content-Type: application/json
+
+{
+  "firstName": "raz",
+  "lastName": "cohen",
+  "phone": "0523561529",
+  "customerTypeName": "simple"
+}
+
+### update customer - is active
+PUT http://localhost:8081/online-library/customers/active/52
 Authorization: Basic simple 666666Raz!
