@@ -20,8 +20,12 @@ import raz.projects.library.validation.userName.UniqueUserName;
 public class LibrarianRequestDto {
 
     @NotNull
-    @Size(min = 3, max = 15, message = "full name should be between 3-15 characters")
-    private String fullName;
+    @Size(min = 2,  max = 30, message = "first name is must be between 2 - 30 characters")
+    private String firstName;
+
+    @NotNull
+    @Size(min = 2,  max = 30, message = "last name is must be between 2 - 30 characters")
+    private String lastName;
 
     @NotNull
     @UniqueUserName

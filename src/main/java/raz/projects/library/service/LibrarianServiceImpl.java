@@ -111,7 +111,8 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
         );
 
 
-        librarian.setFullName(dto.getFullName());
+        librarian.setFirstName(dto.getFirstName());
+        librarian.setLastName(dto.getLastName());
         librarian.setPhone(dto.getPhone());
         librarian.getPermission().setPermission(dto.getPermission());
 

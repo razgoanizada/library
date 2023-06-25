@@ -18,7 +18,10 @@ public class Librarian {
     private Long id;
 
     @NotNull
-    private String fullName;
+    private String firstName;
+
+    @NotNull
+    private String lastName;
 
     @NotNull
     private String userName;

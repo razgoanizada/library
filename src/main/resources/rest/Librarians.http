@@ -12,12 +12,13 @@ Content-Type: application/json
 Authorization: Basic admin 666666Raz!
 
 {
-  "fullName": "raz goanizada",
-  "userName": "simple",
+  "firstName": "raz",
+  "lastName": "goanizada",
+  "userName": "chen",
   "password": "666666Raz!",
-  "email": "razgoanizadaa@walla.com",
+  "email": "adasd@walla.co.il",
   "phone": "052404607",
-  "tz": "987654324",
+  "tz": "123456782",
   "permission": "simple"
 }
 
@@ -47,5 +48,5 @@ Authorization: Basic admin 666666Raz!
 }
 
 ### delete librarian by id
-DELETE http://localhost:8081/online-library/librarians/602
+DELETE http://localhost:8081/online-library/librarians/204
 Authorization: Basic admin 666666Raz!
