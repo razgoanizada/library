@@ -1,15 +1,15 @@
 ### ALL BOOKS
 GET http://localhost:8081/online-library/books
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NzUyNzQ4NiwiZXhwIjoxNjg3NjEzODg2fQ.NqGVWpJGBLfj0ZoeIGnDxT0DuxWcYNLSh2-2ciRnbJwmDz2PiKPfC-y7DBxk0UmyRoFZe9fudwZ6kWGmrHevOQ
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
 
 ### get books page
 GET http://localhost:8081/online-library/books/page?pageSize=4&pageNo=0&sortBy=author&sortDir=asc
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaW1wbGUiLCJpYXQiOjE2ODc1MzAyNTYsImV4cCI6MTY4NzYxNjY1Nn0.K5xdusLwvHDNETqie_fK1tLuk_mdQUDUArrqCd8_fIykm1gqw8NgQgTolOZC4bofgVXdINqrv1tQvExCgD5jZg
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
 
 ### add book
 POST http://localhost:8081/online-library/books/add
 Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaW1wbGUiLCJpYXQiOjE2ODc1MzAyNTYsImV4cCI6MTY4NzYxNjY1Nn0.K5xdusLwvHDNETqie_fK1tLuk_mdQUDUArrqCd8_fIykm1gqw8NgQgTolOZC4bofgVXdINqrv1tQvExCgD5jZg
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
 
 {
   "name": "name1",
@@ -19,12 +19,12 @@ Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaW1wbGUiLCJpYXQiOjE2ODc1M
 
 ###get book by id
 GET http://localhost:8081/online-library/books/1
-Authorization: Basic pro 666666Raz!
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
 
 ### update book - location
 PUT http://localhost:8081/online-library/books/1
 Content-Type: application/json
-Authorization: Basic pro 666666Raz!
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
 
 {
   "location": "floor -3"
@@ -32,4 +32,4 @@ Authorization: Basic pro 666666Raz!
 
 ### delete book by id
 DELETE http://localhost:8081/online-library/books/4
-Authorization: Basic pro 666666Raz!
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw

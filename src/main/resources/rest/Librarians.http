@@ -29,7 +29,7 @@ Authorization: Basic admin 666666Raz!
 ### update librarian
 PUT http://localhost:8081/online-library/librarians/302
 Content-Type: application/json
-Authorization: Basic admin 666666Raz!
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
 
 {
   "fullName": "raz cohen ",
@@ -40,7 +40,7 @@ Authorization: Basic admin 666666Raz!
 ### change password
 PUT http://localhost:8081/online-library/librarians/change-password/252
 Content-Type: application/json
-Authorization: Basic admin 666666Raz!
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
 
 {
   "newPassword": "666666Raz!",
@@ -49,4 +49,4 @@ Authorization: Basic admin 666666Raz!
 
 ### delete librarian by id
 DELETE http://localhost:8081/online-library/librarians/204
-Authorization: Basic admin 666666Raz!
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
