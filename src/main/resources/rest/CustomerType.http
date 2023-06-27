@@ -1,9 +1,0 @@
-### add customer type
-POST http://localhost:8081/online-library/settings/customer-type/add
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
-
-{
-  "name": "rr",
-  "days": 60
-}
