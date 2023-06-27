@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -49,11 +50,45 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
     }
 
     @Override
-    public LibrarianPageDto getLibrariansPage(int pageNo, int pageSize, String sortBy, String sortDir) {
+    public LibrarianPageDto getLibrariansPage(
+            int pageNo, int pageSize, String sortBy, String sortDir,
+            String permission, String firstName, String lastName, String phone, String tz, String useName) {
+
+        Specification<Librarian> specification = Specification.where(null);
+
+        if (permission != null) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(root.get("permission"), permission));
+        }
+
+        if (firstName != null && !firstName.isEmpty()) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(criteriaBuilder.lower(root.get("firstName")), "%" + firstName.toLowerCase() + "%" ));
+        }
+
+        if (lastName != null && !lastName.isEmpty()) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(criteriaBuilder.lower(root.get("lastName")), "%" + lastName.toLowerCase() + "%" ));
+        }
+
+        if (phone != null && !phone.isEmpty()) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(criteriaBuilder.lower(root.get("phone")), "%" + phone.toLowerCase() + "%" ));
+        }
+
+        if (tz != null && !tz.isEmpty()) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(criteriaBuilder.lower(root.get("tz")), "%" + tz.toLowerCase() + "%" ));
+        }
+
+        if (useName != null && !useName.isEmpty()) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(criteriaBuilder.lower(root.get("useName")), "%" + useName.toLowerCase() + "%" ));
+        }
 
         Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.Direction.fromString(sortDir), sortBy);
 
-        Page<Librarian> page = librarianRepository.findAll(pageable);
+        Page<Librarian> page = librarianRepository.findAll(specification ,pageable);
 
         return LibrarianPageDto.builder()
                 .results(page.stream().map(librarian -> mapper.map(librarian, LibrarianResponseDto.class)).toList())
@@ -80,8 +115,8 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
         }
 
         var librarian =  mapper.map(dto, Librarian.class);
-        librarian.setPermission(permission);
         librarian.setPassword(passwordEncoder.encode(dto.getPassword()));
+        librarian.setPermission(permission);
 
         librarianRepository.save(librarian);
 
@@ -110,10 +145,12 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
                 () -> new ResourceNotFoundException( "get librarian" ,id, "This librarian doesn't exist in the library")
         );
 
-
         librarian.setFirstName(dto.getFirstName());
         librarian.setLastName(dto.getLastName());
         librarian.setPhone(dto.getPhone());
+        librarian.setGender(dto.getGender());
+        librarian.setAddress(dto.getAddress());
+        librarian.setDateOfBirth(dto.getDateOfBirth());
         librarian.getPermission().setPermission(dto.getPermission());
 
         var saved = librarianRepository.save(librarian);

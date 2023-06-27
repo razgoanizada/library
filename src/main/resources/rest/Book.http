@@ -1,6 +1,6 @@
 ### ALL BOOKS
 GET http://localhost:8081/online-library/books
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+Authorization: Basic admin 666666Raz!
 
 ### get books page
 GET http://localhost:8081/online-library/books/page?pageSize=4&pageNo=0&sortBy=author&sortDir=asc
@@ -22,14 +22,14 @@ GET http://localhost:8081/online-library/books/1
 Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
 
 ### update book - location
-PUT http://localhost:8081/online-library/books/1
+PUT http://localhost:8081/online-library/books/753
 Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+Authorization: Basic admin 666666Raz!
 
 {
-  "location": "floor -3"
+  "location": "floor -sfsdf3"
 }
 
 ### delete book by id
 DELETE http://localhost:8081/online-library/books/4
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+Authorization: Basic admin 666666Raz!

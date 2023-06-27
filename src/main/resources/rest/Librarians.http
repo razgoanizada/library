@@ -3,7 +3,7 @@ GET http://localhost:8081/online-library/librarians
 Authorization: Basic admin 666666Raz!
 
 ### get librarians page
-GET http://localhost:8081/online-library/librarians/page?pageNo=0&pageSize=5&sortBy=fullName&sortDir=asc
+GET http://localhost:8081/online-library/librarians/page?firstName=raz&permission=1&lastName=goa&phone=0524046&tz=318
 Authorization: Basic admin 666666Raz!
 
 ### add librarian
@@ -12,14 +12,17 @@ Content-Type: application/json
 Authorization: Basic admin 666666Raz!
 
 {
-  "firstName": "raz",
+  "firstName": "razg",
   "lastName": "goanizada",
-  "userName": "chen",
+  "userName": "sfsdff!",
   "password": "666666Raz!",
-  "email": "adasd@walla.co.il",
+  "email": "fsdfsdf@dsfsdf.com",
   "phone": "052404607",
-  "tz": "123456782",
-  "permission": "simple"
+  "tz": "999093065",
+  "address": "kfar sava",
+  "dateOfBirth": "2020-01-01",
+  "gender": "male",
+  "permission": "pro"
 }
 
 ###get librarian by id
@@ -27,20 +30,24 @@ GET http://localhost:8081/online-library/librarians/402
 Authorization: Basic admin 666666Raz!
 
 ### update librarian
-PUT http://localhost:8081/online-library/librarians/302
+PUT http://localhost:8081/online-library/librarians/10
 Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+Authorization: Basic admin 666666Raz!
 
 {
-  "fullName": "raz cohen ",
+  "firstName": "dfsfsdf",
+  "lastName": "fdsfdsfsdf",
+  "gender": "female",
+  "address": "dsfsdfsf",
+  "dateOfBirth": "2021-08-08",
   "phone": "0524046007",
   "permission": "pro"
 }
 
 ### change password
-PUT http://localhost:8081/online-library/librarians/change-password/252
+PUT http://localhost:8081/online-library/librarians/change-password/1
 Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+Authorization: Basic admin 666666Raz!
 
 {
   "newPassword": "666666Raz!",
@@ -49,4 +56,4 @@ Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5M
 
 ### delete librarian by id
 DELETE http://localhost:8081/online-library/librarians/204
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+Authorization: Basic admin 666666Raz!

@@ -38,10 +38,17 @@ public class LibrarianController {
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
             @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize,
             @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
-            @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir
+            @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir,
+            @RequestParam(value = "permission", required = false) String permission,
+            @RequestParam(value = "firstName", required = false) String firstName,
+            @RequestParam(value = "lastName", required = false) String lastName,
+            @RequestParam(value = "phone", required = false) String phone,
+            @RequestParam(value = "tz", required = false) String tz,
+            @RequestParam(value = "userName", required = false) String userName
     ) {
 
-        return ResponseEntity.ok(librarianService.getLibrariansPage(pageNo, pageSize, sortBy, sortDir));
+        return ResponseEntity.ok(librarianService.getLibrariansPage(
+                pageNo, pageSize, sortBy, sortDir, permission, firstName, lastName, phone, tz, userName));
     }
 
 

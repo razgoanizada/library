@@ -1,17 +1,18 @@
 package raz.projects.library.dto.request;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import raz.projects.library.enums.Gender;
 import raz.projects.library.validation.email.UniqueEmail;
 import raz.projects.library.validation.tz.UniqueTz;
 import raz.projects.library.validation.tz.UniqueTzIsrael;
 import raz.projects.library.validation.userName.UniqueUserName;
+
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -50,6 +51,14 @@ public class LibrarianRequestDto {
     @UniqueTz (fieldName = "librarian")
     @UniqueTzIsrael
     private String tz;
+
+    private Gender gender;
+
+    private String address;
+
+    @Past(message = "Date of birth should be in the past")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfBirth;
 
     @NotNull
     private String permission;
