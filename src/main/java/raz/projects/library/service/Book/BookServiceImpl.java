@@ -1,4 +1,4 @@
-package raz.projects.library.service;
+package raz.projects.library.service.Book;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -81,7 +81,7 @@ public class BookServiceImpl implements BookService{
     @Override
     public BookResponseDto updateBookLocation(BookUpdateLocation dto, Long id) {
 
-        Book book = bookRepository.findById(id).orElseThrow(
+        var book = bookRepository.findById(id).orElseThrow(
                 () -> new BadRequestException("update book", id, "This book doesn't exist in the library")
         );
 
@@ -96,7 +96,7 @@ public class BookServiceImpl implements BookService{
     public BookResponseDto deleteBookById(Long id) {
 
         var exists = bookRepository.existsById(id);
-        Book book = bookRepository.findById(id).orElseThrow(
+        var book = bookRepository.findById(id).orElseThrow(
                 () -> new BadRequestException("delete book", id, "This book doesn't exist in the library")
         );
 

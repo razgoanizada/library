@@ -1,4 +1,4 @@
-package raz.projects.library.service;
+package raz.projects.library.service.Customer;
 
 
 import raz.projects.library.dto.pages.CustomerPageDto;

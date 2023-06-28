@@ -1,0 +1,59 @@
+### ALL librarians
+GET http://localhost:8081/online-library/librarians
+Authorization: Basic admin 666666Raz!
+
+### get librarians page
+GET http://localhost:8081/online-library/librarians/page?firstName=raz&permission=1&lastName=goa&phone=0524046&tz=318
+Authorization: Basic admin 666666Raz!
+
+### add librarian
+POST http://localhost:8081/online-library/librarians/add
+Content-Type: application/json
+Authorization: Basic admin 666666Raz!
+
+{
+  "firstName": "razg",
+  "lastName": "goanizada",
+  "userName": "sfsdff!",
+  "password": "666666Raz!",
+  "email": "fsdfsdf@dsfsdf.com",
+  "phone": "052404607",
+  "tz": "999093065",
+  "address": "kfar sava",
+  "dateOfBirth": "2020-01-01",
+  "gender": "male",
+  "permission": "pro"
+}
+
+###get librarian by id
+GET http://localhost:8081/online-library/librarians/402
+Authorization: Basic admin 666666Raz!
+
+### update librarian
+PUT http://localhost:8081/online-library/librarians/10
+Content-Type: application/json
+Authorization: Basic admin 666666Raz!
+
+{
+  "firstName": "dfsfsdf",
+  "lastName": "fdsfdsfsdf",
+  "gender": "female",
+  "address": "dsfsdfsf",
+  "dateOfBirth": "2021-08-08",
+  "phone": "0524046007",
+  "permission": "pro"
+}
+
+### change password
+PUT http://localhost:8081/online-library/librarians/change-password/1
+Content-Type: application/json
+Authorization: Basic admin 666666Raz!
+
+{
+  "newPassword": "666666Raz!",
+  "repeatNewPassword": "666666Raz!"
+}
+
+### delete librarian by id
+DELETE http://localhost:8081/online-library/librarians/102
+Authorization: Basic admin 666666Raz!

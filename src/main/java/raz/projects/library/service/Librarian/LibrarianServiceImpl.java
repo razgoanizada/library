@@ -1,4 +1,4 @@
-package raz.projects.library.service;
+package raz.projects.library.service.Librarian;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -63,27 +63,32 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
 
         if (firstName != null && !firstName.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
-                    criteriaBuilder.like(criteriaBuilder.lower(root.get("firstName")), "%" + firstName.toLowerCase() + "%" ));
+                    criteriaBuilder.like(criteriaBuilder.lower(
+                            root.get("firstName")), "%" + firstName.toLowerCase() + "%" ));
         }
 
         if (lastName != null && !lastName.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
-                    criteriaBuilder.like(criteriaBuilder.lower(root.get("lastName")), "%" + lastName.toLowerCase() + "%" ));
+                    criteriaBuilder.like(criteriaBuilder.lower(
+                            root.get("lastName")), "%" + lastName.toLowerCase() + "%" ));
         }
 
         if (phone != null && !phone.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
-                    criteriaBuilder.like(criteriaBuilder.lower(root.get("phone")), "%" + phone.toLowerCase() + "%" ));
+                    criteriaBuilder.like(criteriaBuilder.lower(
+                            root.get("phone")), "%" + phone.toLowerCase() + "%" ));
         }
 
         if (tz != null && !tz.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
-                    criteriaBuilder.like(criteriaBuilder.lower(root.get("tz")), "%" + tz.toLowerCase() + "%" ));
+                    criteriaBuilder.like(criteriaBuilder.lower(
+                            root.get("tz")), "%" + tz.toLowerCase() + "%" ));
         }
 
         if (useName != null && !useName.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
-                    criteriaBuilder.like(criteriaBuilder.lower(root.get("useName")), "%" + useName.toLowerCase() + "%" ));
+                    criteriaBuilder.like(criteriaBuilder.lower(
+                            root.get("useName")), "%" + useName.toLowerCase() + "%" ));
         }
 
         Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.Direction.fromString(sortDir), sortBy);
@@ -93,7 +98,7 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
         return LibrarianPageDto.builder()
                 .results(page.stream().map(librarian -> mapper.map(librarian, LibrarianResponseDto.class)).toList())
                 .totalPages(page.getTotalPages())
-                .totalBooks(page.getTotalElements())
+                .totalLibrarians(page.getTotalElements())
                 .isFirst(page.isFirst())
                 .isLast(page.isLast())
                 .pageNo(page.getNumber())
@@ -132,7 +137,8 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
     public LibrarianResponseDto getLibrarianById(Long id) {
 
         var librarian = librarianRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException( "get librarian" ,id, "This librarian doesn't exist in the library")
+                () -> new ResourceNotFoundException(
+                        "get librarian" ,id, "This librarian doesn't exist in the library")
         );
         return mapper.map(librarian, LibrarianResponseDto.class);
     }
@@ -142,7 +148,8 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
 
 
         var librarian = librarianRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException( "get librarian" ,id, "This librarian doesn't exist in the library")
+                () -> new ResourceNotFoundException(
+                        "get librarian" ,id, "This librarian doesn't exist in the library")
         );
 
         librarian.setFirstName(dto.getFirstName());
@@ -164,7 +171,8 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
     public LibrarianResponseDto librarianChangePassword(LibrarianChangePassword dto, Long id){
 
         var librarian = librarianRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException( "get librarian" ,id, "This librarian doesn't exist in the library")
+                () -> new ResourceNotFoundException(
+                        "get librarian" ,id, "This librarian doesn't exist in the library")
         );
 
         librarian.setPassword(passwordEncoder.encode(dto.getNewPassword()));
@@ -179,7 +187,8 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
 
         var exists = librarianRepository.existsById(id);
         var librarian = librarianRepository.findById(id).orElseThrow(
-                () -> new BadRequestException("delete librarian", id, "This librarian does not exist in the library")
+                () -> new BadRequestException(
+                        "delete librarian", id, "This librarian does not exist in the library")
         );
 
         if (exists)

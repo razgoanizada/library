@@ -1,4 +1,4 @@
-package raz.projects.library.service;
+package raz.projects.library.service.Librarian;
 
 import raz.projects.library.dto.pages.LibrarianPageDto;
 import raz.projects.library.dto.request.LibrarianRequestDto;

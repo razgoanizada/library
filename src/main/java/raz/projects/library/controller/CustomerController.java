@@ -10,7 +10,7 @@ import raz.projects.library.dto.pages.CustomerPageDto;
 import raz.projects.library.dto.request.CustomerRequestDto;
 import raz.projects.library.dto.response.CustomerResponseDto;
 import raz.projects.library.dto.update.CustomerUpdate;
-import raz.projects.library.service.CustomerService;
+import raz.projects.library.service.Customer.CustomerService;
 
 import java.util.List;
 

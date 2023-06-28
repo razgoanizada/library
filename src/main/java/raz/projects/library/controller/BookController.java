@@ -11,7 +11,7 @@ import raz.projects.library.dto.pages.BookPageDto;
 import raz.projects.library.dto.request.BookRequestDto;
 import raz.projects.library.dto.response.BookResponseDto;
 import raz.projects.library.dto.update.BookUpdateLocation;
-import raz.projects.library.service.BookService;
+import raz.projects.library.service.Book.BookService;
 import java.util.List;
 
 
@@ -53,6 +53,7 @@ public class BookController {
 
     @GetMapping("/{id}")
     public ResponseEntity<BookResponseDto> getBookById (@PathVariable @Valid @NotNull Long id) {
+
         return ResponseEntity.ok(bookService.getBookById(id));
     }
 
@@ -60,12 +61,14 @@ public class BookController {
     @PutMapping("/{id}")
     public ResponseEntity<BookResponseDto> updateBookLocation (@PathVariable @Valid @NotNull Long id,
                                                                @Valid @RequestBody BookUpdateLocation dto) {
+
         return ResponseEntity.accepted().body(bookService.updateBookLocation(dto, id));
     }
 
     @PreAuthorize("hasAnyAuthority('admin', 'pro')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteBookById (@PathVariable @Valid @NotNull Long id) {
+    public ResponseEntity<BookResponseDto> deleteBookById (@PathVariable @Valid @NotNull Long id) {
+
         return ResponseEntity.accepted().body(bookService.deleteBookById(id));
 
     }

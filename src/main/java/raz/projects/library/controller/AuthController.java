@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import raz.projects.library.dto.request.SignInRequestDto;
 import raz.projects.library.security.JWTProvider;
-import raz.projects.library.service.LibrarianServiceImpl;
+import raz.projects.library.service.Librarian.LibrarianServiceImpl;
 
 import java.util.Map;
 

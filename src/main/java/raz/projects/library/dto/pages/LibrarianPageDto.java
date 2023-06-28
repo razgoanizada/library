@@ -17,7 +17,7 @@ public class LibrarianPageDto {
 
     private List<LibrarianResponseDto> results;
     private int totalPages;
-    private long totalBooks;
+    private long totalLibrarians;
     private boolean isFirst;
     private boolean isLast;
     private int pageNo;

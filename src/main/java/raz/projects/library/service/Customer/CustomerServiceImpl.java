@@ -1,4 +1,4 @@
-package raz.projects.library.service;
+package raz.projects.library.service.Customer;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -46,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService {
             return CustomerPageDto.builder()
                     .results(page.stream().map(customer -> mapper.map(customer, CustomerResponseDto.class)).toList())
                     .totalPages(page.getTotalPages())
-                    .totalBooks(page.getTotalElements())
+                    .totalCustomers(page.getTotalElements())
                     .isFirst(page.isFirst())
                     .isLast(page.isLast())
                     .pageNo(page.getNumber())

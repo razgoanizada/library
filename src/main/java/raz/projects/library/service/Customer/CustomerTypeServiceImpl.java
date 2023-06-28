@@ -1,4 +1,4 @@
-package raz.projects.library.service;
+package raz.projects.library.service.Customer;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

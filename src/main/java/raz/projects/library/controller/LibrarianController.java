@@ -12,7 +12,7 @@ import raz.projects.library.dto.request.LibrarianRequestDto;
 import raz.projects.library.dto.response.LibrarianResponseDto;
 import raz.projects.library.dto.update.LibrarianChangePassword;
 import raz.projects.library.dto.update.LibrarianUpdate;
-import raz.projects.library.service.LibrarianService;
+import raz.projects.library.service.Librarian.LibrarianService;
 
 import java.util.List;
 
@@ -86,7 +86,7 @@ public class LibrarianController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteLibrarianById (@PathVariable Long id) {
+    public ResponseEntity<LibrarianResponseDto> deleteLibrarianById (@PathVariable Long id) {
         return ResponseEntity.accepted().body(librarianService.deleteLibrarianById(id));
     }
 

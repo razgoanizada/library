@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 import raz.projects.library.dto.request.CustomerTypeRequestDto;
 import raz.projects.library.dto.response.CustomerTypeResponseDto;
-import raz.projects.library.service.CustomerTypeService;
+import raz.projects.library.service.Customer.CustomerTypeService;
 
 @RestController
 @RequiredArgsConstructor

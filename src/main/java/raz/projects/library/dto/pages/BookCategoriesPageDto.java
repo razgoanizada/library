@@ -1,10 +1,11 @@
 package raz.projects.library.dto.pages;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import raz.projects.library.dto.response.CustomerResponseDto;
+import raz.projects.library.dto.response.BookCategoriesResponseDto;
 
 import java.util.List;
 
@@ -12,11 +13,11 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerPageDto {
+public class BookCategoriesPageDto {
 
-    private List<CustomerResponseDto> results;
+    private List<BookCategoriesResponseDto> results;
     private int totalPages;
-    private long totalCustomers;
+    private long totalCategories;
     private boolean isFirst;
     private boolean isLast;
     private int pageNo;
