@@ -1,4 +1,4 @@
-package raz.projects.library.dto.request;
+package raz.projects.library.dto.update;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -10,21 +10,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class BookRequestDto {
-
-    @NotNull
-    @Size(min = 2,  max = 30, message = "name is must be between 2 - 30 characters")
-    private String name;
-
-    @NotNull
-    @Size(min = 2, max = 30, message = "name is must be between 2 - 30 characters")
-    private String author;
-
-    @NotNull
-    @Pattern(regexp = "\\d{4}", message = "Invalid value. Must be a 4-digit number")
-    private String publishYear;
+@AllArgsConstructor
+public class BookUpdate {
 
     @NotNull
     @Size(min = 15, max = 250, message = "Please enter a short description between 15 - 250 characters")

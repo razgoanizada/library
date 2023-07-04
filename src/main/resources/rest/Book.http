@@ -3,8 +3,8 @@ GET http://localhost:8081/online-library/books
 Authorization: Basic admin 666666Raz!
 
 ### get books page
-GET http://localhost:8081/online-library/books/page?pageSize=4&pageNo=0&sortBy=author&sortDir=asc
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+GET http://localhost:8081/online-library/books/page?name=test&publishYear=1995
+Authorization: Basic admin 666666Raz!
 
 ### add book
 POST http://localhost:8081/online-library/books/add
@@ -12,24 +12,29 @@ Content-Type: application/json
 Authorization: Basic admin 666666Raz!
 
 {
-  "name": "name1",
-  "location": "-1hgf2",
-  "author": "ra4 2344234"
+  "name": "test",
+  "author": "raz goanizada",
+  "description": "fsafdsakfabsfkasbfaskfb dslfdndlfsdnfldsfnsfslfn dlagnalgagnsg",
+  "bookcase": "158",
+  "bookCategoriesName": "drama",
+  "publishYear": "1998"
 }
 
 ###get book by id
 GET http://localhost:8081/online-library/books/1
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+Authorization: Basic admin 666666Raz!
 
-### update book - location
-PUT http://localhost:8081/online-library/books/753
+### update book
+PUT http://localhost:8081/online-library/books/1
 Content-Type: application/json
 Authorization: Basic admin 666666Raz!
 
 {
-  "location": "floor -sfsdf3"
+  "bookCategoriesName": "drama",
+  "bookcase": "158",
+  "description": "fsafdsakfabsfkasbfaskfb dslfdndlfsdnfldsfnsfslfn dlagnalgagnsg"
 }
 
 ### delete book by id
-DELETE http://localhost:8081/online-library/books/703
+DELETE http://localhost:8081/online-library/books/1
 Authorization: Basic admin 666666Raz!

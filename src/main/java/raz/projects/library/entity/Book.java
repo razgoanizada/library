@@ -2,7 +2,6 @@ package raz.projects.library.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -17,7 +16,7 @@ import java.sql.Date;
 @AllArgsConstructor
 @Table(
         name = "books",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "author"})}
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "author", "description"})}
         )
 public class Book {
 
@@ -26,18 +25,29 @@ public class Book {
     private Long id;
 
     @NotNull
-    @Size(min = 2,  max = 30)
     private String name;
 
     @NotNull
-    @Size(min = 2, max = 30)
     private String author;
 
     @NotNull
-    @Size(min = 2, max = 30)
-    private String location;
+    private String publishYear;
+
+    @NotNull
+    private String description;
+
+    @NotNull
+    private String bookcase;
+
+    @ManyToOne
+    @JoinColumn(name = "book_category_id")
+    private BookCategories bookCategories;
+
+    @ManyToOne
+    @JoinColumn(name = "librarian_id")
+    private Librarian addedBy;
 
     @CreationTimestamp
-    private Date CreationDate;
+    private Date creationDate;
 
 }

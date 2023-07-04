@@ -11,9 +11,13 @@ import java.sql.Date;
 @NoArgsConstructor
 public class BookResponseDto {
 
-    private long id;
+    private Long id;
     private String name;
     private String author;
-    private String location;
-    private Date CreationDate;
+    private String publishYear;
+    private String description;
+    private String bookcase;
+    private String bookCategoriesName;
+    private String addedByUserName;
+    private Date creationDate;
 }

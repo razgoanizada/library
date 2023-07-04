@@ -7,15 +7,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import raz.projects.library.dto.pages.BookPageDto;
 import raz.projects.library.dto.request.BookRequestDto;
 import raz.projects.library.dto.response.BookResponseDto;
-import raz.projects.library.dto.update.BookUpdateLocation;
+import raz.projects.library.dto.update.BookUpdate;
 import raz.projects.library.entity.Book;
+import raz.projects.library.entity.BookCategories;
 import raz.projects.library.errors.BadRequestException;
 import raz.projects.library.errors.ResourceNotFoundException;
+import raz.projects.library.repository.BookCategoriesRepository;
 import raz.projects.library.repository.BookRepository;
+import raz.projects.library.repository.LibrarianRepository;
 
 import java.util.List;
 
@@ -25,6 +30,8 @@ import java.util.List;
 public class BookServiceImpl implements BookService{
 
     private final BookRepository bookRepository;
+    private final BookCategoriesRepository bookCategoriesRepository;
+    private final LibrarianRepository librarianRepository;
     private final ModelMapper mapper;
 
     @Override
@@ -37,11 +44,49 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public BookPageDto getBooksPage(int pageNo, int pageSize, String sortBy, String sortDir) {
+    public BookPageDto getBooksPage(
+            int pageNo, int pageSize, String sortBy, String sortDir,
+            String name, String author, String publishYear, String bookcase, String bookCategories, String addedBy) {
+
+        Specification<Book> specification = Specification.where(null);
+
+        if (name != null && !name.isEmpty()) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(criteriaBuilder.lower(
+                            root.get("name")), "%" + name.toLowerCase() + "%" ));
+        }
+
+        if (author != null && !author.isEmpty()) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(criteriaBuilder.lower(
+                            root.get("author")), "%" + author.toLowerCase() + "%" ));
+        }
+
+        if (publishYear != null && !publishYear.isEmpty()) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(criteriaBuilder.lower(
+                            root.get("publishYear")), "%" + publishYear.toLowerCase() + "%" ));
+        }
+
+        if (bookcase != null && !bookcase.isEmpty()) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(criteriaBuilder.lower(
+                            root.get("bookcase")), "%" + bookcase.toLowerCase() + "%" ));
+        }
+
+        if (bookCategories != null) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(root.get("permission"), bookCategories));
+        }
+
+        if (addedBy != null) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(root.get("addedBy"), addedBy));
+        }
 
         Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.Direction.fromString(sortDir), sortBy);
 
-        Page<Book> page = bookRepository.findAll(pageable);
+        Page<Book> page = bookRepository.findAll(specification ,pageable);
 
         return BookPageDto.builder()
                 .results(page.stream().map(book -> mapper.map(book, BookResponseDto.class)).toList())
@@ -56,13 +101,34 @@ public class BookServiceImpl implements BookService{
 
 
     @Override
-    public BookResponseDto addBook(BookRequestDto dto) {
+    public BookResponseDto addBook(BookRequestDto dto, Authentication authentication) {
+
+        BookCategories bookCategories =  bookCategoriesRepository
+                .findBookCategoriesByNameIgnoreCase(dto.getBookCategoriesName());
+
+        if (bookCategories == null) {
+            throw new BadRequestException(
+                    "add book - categories",
+                    dto.getBookCategoriesName(),
+                    "This categories doesn't exist in the library");
+        }
+
+        var librarian = librarianRepository.findLibrarianByUserNameIgnoreCase(authentication.getName()).orElseThrow();
 
         var book = mapper.map(dto, Book.class);
 
+        book.setBookCategories(bookCategories);
+        book.setAddedBy(librarian);
+
        try {
-           var savedBook = bookRepository.save(book);
-           return mapper.map(savedBook, BookResponseDto.class);
+           bookRepository.save(book);
+           var response =  mapper.map(book, BookResponseDto.class);
+
+           response.setBookCategoriesName(book.getBookCategories().getName());
+           response.setAddedByUserName(book.getAddedBy().getUserName());
+
+           return response;
+
        } catch (DataIntegrityViolationException exception) {
            throw new BadRequestException("add book", book.getId(), "This book is already in the library");
        }
@@ -79,17 +145,33 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public BookResponseDto updateBookLocation(BookUpdateLocation dto, Long id) {
+    public BookResponseDto updateBook(BookUpdate dto, Long id) {
 
         var book = bookRepository.findById(id).orElseThrow(
                 () -> new BadRequestException("update book", id, "This book doesn't exist in the library")
         );
 
-        book.setLocation(dto.getLocation());
+        BookCategories bookCategories =  bookCategoriesRepository
+                .findBookCategoriesByNameIgnoreCase(dto.getBookCategoriesName());
 
-        var save = bookRepository.save(book);
+        if (bookCategories == null) {
+            throw new BadRequestException(
+                    "update book - categories",
+                    dto.getBookCategoriesName(),
+                    "This categories doesn't exist in the library");
+        }
 
-        return mapper.map(save, BookResponseDto.class);
+       book.setDescription(dto.getDescription());
+       book.setBookcase(dto.getBookcase());
+       book.setBookCategories(bookCategories);
+
+       bookRepository.save(book);
+       var response = mapper.map(book, BookResponseDto.class);
+
+       response.setBookCategoriesName(book.getBookCategories().getName());
+       response.setAddedByUserName(book.getAddedBy().getUserName());
+
+       return response;
     }
 
     @Override

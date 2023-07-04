@@ -8,5 +8,6 @@ import raz.projects.library.entity.BookCategories;
 
 public interface BookCategoriesRepository extends JpaRepository<BookCategories, Long> {
 
+    BookCategories findBookCategoriesByNameIgnoreCase (String name);
     Page<BookCategories> findAll(Specification<BookCategories> specification, Pageable pageable);
 }

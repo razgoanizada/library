@@ -17,7 +17,8 @@ public class LibrarianChangePassword {
 
     @NotNull
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?\\W).{8,20}$",
-            message = "The password must be at least 8 characters long, an uppercase letter, a lowercase letter, a number, and a character")
+            message = "The password must be at least 8 characters long," +
+                    " an uppercase letter, a lowercase letter, a number, and a character")
     private String newPassword;
     private String repeatNewPassword;
 }

@@ -7,10 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.security.core.Authentication;
 import raz.projects.library.dto.pages.BookPageDto;
 import raz.projects.library.dto.request.BookRequestDto;
 import raz.projects.library.dto.response.BookResponseDto;
-import raz.projects.library.dto.update.BookUpdateLocation;
+import raz.projects.library.dto.update.BookUpdate;
 import raz.projects.library.service.Book.BookService;
 import java.util.List;
 
@@ -31,20 +32,31 @@ public class BookController {
 
     @GetMapping ("/page")
     public ResponseEntity<BookPageDto> getBooksPage (
+
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
             @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize,
             @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
-            @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir
+            @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "author", required = false) String author,
+            @RequestParam(value = "publishYear", required = false) String publishYear,
+            @RequestParam(value = "bookcase", required = false) String bookcase,
+            @RequestParam(value = "bookCategories", required = false) String bookCategories,
+            @RequestParam(value = "addedBy", required = false) String addedBy
     ) {
 
-        return ResponseEntity.ok(bookService.getBooksPage(pageNo, pageSize, sortBy, sortDir));
+        return ResponseEntity.ok(bookService.getBooksPage(
+                pageNo, pageSize, sortBy, sortDir, name, author, publishYear, bookcase, bookCategories, addedBy));
     }
 
     @PreAuthorize("hasAnyAuthority('admin', 'pro')")
     @PostMapping("/add")
-    public ResponseEntity<BookResponseDto> addBook (@RequestBody @Valid BookRequestDto dto, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<BookResponseDto> addBook (
+            @RequestBody @Valid BookRequestDto dto,
+            UriComponentsBuilder uriComponentsBuilder,
+            Authentication authentication) {
 
-        var responseDto = bookService.addBook(dto);
+        var responseDto = bookService.addBook(dto, authentication);
 
         var uri = uriComponentsBuilder.path("/books/{id}").buildAndExpand(responseDto.getId()).toUri();
 
@@ -59,10 +71,10 @@ public class BookController {
 
     @PreAuthorize("hasAnyAuthority('admin', 'pro')")
     @PutMapping("/{id}")
-    public ResponseEntity<BookResponseDto> updateBookLocation (@PathVariable @Valid @NotNull Long id,
-                                                               @Valid @RequestBody BookUpdateLocation dto) {
+    public ResponseEntity<BookResponseDto> updateBook (@PathVariable @Valid @NotNull Long id,
+                                                               @Valid @RequestBody BookUpdate dto) {
 
-        return ResponseEntity.accepted().body(bookService.updateBookLocation(dto, id));
+        return ResponseEntity.accepted().body(bookService.updateBook(dto, id));
     }
 
     @PreAuthorize("hasAnyAuthority('admin', 'pro')")
