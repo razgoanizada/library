@@ -1,7 +1,11 @@
 package raz.projects.library.dto.request;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import raz.projects.library.validation.CustomerTypeName.UniqueCustomerTypeName;
 
 @Data
@@ -15,5 +19,10 @@ public class CustomerTypeRequestDto {
     private String name;
 
     @NotNull
+    @Max(180)
     private int days;
+
+    @NotNull
+    @Max(10)
+    private int amountBooks;
 }

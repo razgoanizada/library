@@ -1,9 +1,6 @@
 package raz.projects.library.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -13,7 +10,8 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "customer_type")
+@Table(name = "customer_type",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"days", "amount_books"}))
 public class CustomerType {
 
     @Id
@@ -25,4 +23,7 @@ public class CustomerType {
 
     @NotNull
     private int days;
+
+    @NotNull
+    private int amountBooks;
 }

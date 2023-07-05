@@ -12,4 +12,5 @@ public class CustomerTypeResponseDto {
     private Long id;
     private String name;
     private int days;
+    private int amountBooks;
 }

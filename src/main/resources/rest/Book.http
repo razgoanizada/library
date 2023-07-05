@@ -36,5 +36,5 @@ Authorization: Basic admin 666666Raz!
 }
 
 ### delete book by id
-DELETE http://localhost:8081/online-library/books/1
+DELETE http://localhost:8081/online-library/books/3
 Authorization: Basic admin 666666Raz!
