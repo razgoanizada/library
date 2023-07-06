@@ -11,7 +11,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "customer_type",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"days", "amount_books"}))
+        uniqueConstraints =  @UniqueConstraint(columnNames = {"days", "amount"}))
+
 public class CustomerType {
 
     @Id
@@ -25,5 +26,5 @@ public class CustomerType {
     private int days;
 
     @NotNull
-    private int amountBooks;
+    private int amount;
 }

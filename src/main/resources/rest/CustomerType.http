@@ -1,9 +1,36 @@
+### all types
+GET http://localhost:8081/online-library/customer-type
+Authorization: Basic admin Password6!
+
+### all types page
+GET http://localhost:8081/online-library/customer-type/page?amount=3&days=4&name=ra
+Authorization: Basic admin Password6!
+
 ### add customer type
-POST http://localhost:8081/online-library/settings/customer-type/add
+POST http://localhost:8081/online-library/customer-type/add
 Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+Authorization: Basic admin Password6!
 
 {
-  "name": "rr",
-  "days": 60
+  "name": "dfd",
+  "days": 2,
+  "amount": 1
 }
+
+### get type by id
+GET http://localhost:8081/online-library/customer-type/403
+Authorization: Basic admin Password6!
+
+### update type by id
+PUT http://localhost:8081/online-library/customer-type/403
+Content-Type: application/json
+Authorization: Basic admin Password6!
+
+{
+  "amount": 5,
+  "days": 7
+}
+
+### delete type by id
+DELETE http://localhost:8081/online-library/customer-type/403
+Authorization: Basic admin Password6!

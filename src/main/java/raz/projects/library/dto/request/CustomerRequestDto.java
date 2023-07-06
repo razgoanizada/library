@@ -1,17 +1,18 @@
 package raz.projects.library.dto.request;
 
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import raz.projects.library.enums.Gender;
 import raz.projects.library.validation.email.UniqueEmail;
 import raz.projects.library.validation.tz.UniqueTz;
 import raz.projects.library.validation.tz.UniqueTzIsrael;
+
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -27,8 +28,8 @@ public class CustomerRequestDto {
     @Size(min = 2,  max = 30, message = "last name is must be between 2 - 30 characters")
     private String lastName;
 
-    @UniqueEmail()
     @NotNull
+    @UniqueEmail()
     @Email(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,6}$")
     private String email;
 
@@ -40,6 +41,14 @@ public class CustomerRequestDto {
     @UniqueTz
     @UniqueTzIsrael
     private String tz;
+
+    private Gender gender;
+
+    private String address;
+
+    @Past(message = "Date of birth should be in the past")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate DateOfBirth;
 
     @NotNull
     private String customerTypeName;

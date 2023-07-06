@@ -76,7 +76,7 @@ public class BookServiceImpl implements BookService{
 
         if (bookCategories != null) {
             specification = specification.and((root, query, criteriaBuilder) ->
-                    criteriaBuilder.equal(root.get("permission"), bookCategories));
+                    criteriaBuilder.equal(root.get("bookCategories"), bookCategories));
         }
 
         if (addedBy != null) {

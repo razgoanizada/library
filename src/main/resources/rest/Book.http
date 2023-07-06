@@ -1,18 +1,18 @@
 ### ALL BOOKS
 GET http://localhost:8081/online-library/books
-Authorization: Basic admin 666666Raz!
+Authorization: Basic admin Password6!
 
 ### get books page
-GET http://localhost:8081/online-library/books/page?name=test&publishYear=1995
-Authorization: Basic admin 666666Raz!
+GET http://localhost:8081/online-library/books/page?addedBy=1
+Authorization: Basic admin Password6!
 
 ### add book
 POST http://localhost:8081/online-library/books/add
 Content-Type: application/json
-Authorization: Basic admin 666666Raz!
+Authorization: Basic admin Password6!
 
 {
-  "name": "test",
+  "name": "test2",
   "author": "raz goanizada",
   "description": "fsafdsakfabsfkasbfaskfb dslfdndlfsdnfldsfnsfslfn dlagnalgagnsg",
   "bookcase": "158",
@@ -21,13 +21,13 @@ Authorization: Basic admin 666666Raz!
 }
 
 ###get book by id
-GET http://localhost:8081/online-library/books/1
-Authorization: Basic admin 666666Raz!
+GET http://localhost:8081/online-library/books/153
+Authorization: Basic admin Password6!
 
 ### update book
-PUT http://localhost:8081/online-library/books/1
+PUT http://localhost:8081/online-library/books/153
 Content-Type: application/json
-Authorization: Basic admin 666666Raz!
+Authorization: Basic admin Password6!
 
 {
   "bookCategoriesName": "drama",
@@ -36,5 +36,5 @@ Authorization: Basic admin 666666Raz!
 }
 
 ### delete book by id
-DELETE http://localhost:8081/online-library/books/3
-Authorization: Basic admin 666666Raz!
+DELETE http://localhost:8081/online-library/books/102
+Authorization: Basic admin Password6!

@@ -3,6 +3,10 @@ package raz.projects.library.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import raz.projects.library.enums.Gender;
+
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -15,6 +19,11 @@ public class CustomerResponseDto {
     private String email;
     private String phone;
     private String tz;
-    private String customerTypeName;;
+    private Gender gender;
+    private String address;
+    private LocalDate DateOfBirth;
     private boolean isActive;
+    private String customerTypeName;
+    private String addedByUserName;
+    private Date CreationDate;
 }

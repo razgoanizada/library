@@ -1,37 +1,43 @@
 ### ALL cutomers
 GET http://localhost:8081/online-library/customers
-Authorization: Basic admin 666666Raz!
+Authorization: Basic admin Password6!
+
+### get librarians page
+GET http://localhost:8081/online-library/customers/page?firstName=raz
+Authorization: Basic admin Password6!
 
 ### add customer
 POST http://localhost:8081/online-library/customers/add
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+Authorization: Basic admin Password6!
 Content-Type: application/json
 
 {
   "firstName": "raz",
   "lastName": "cohen",
-  "email": "radfgdfadaa@gmail.com",
-  "tz": "321321325",
+  "email": "radfgdfadaaa@gmail.com",
+  "tz": "318969433",
   "phone": "0524046007",
-  "customerTypeName": "pr"
+  "address": "dsfsf",
+  "customerTypeName": "raz",
+  "gender": "male"
 }
 
 ###get customer by id
 GET http://localhost:8081/online-library/customers/2
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+Authorization: Basic admin Password6!
 
 ### udpdate customer by id
-PUT http://localhost:8081/online-library/customers/2
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+PUT http://localhost:8081/online-library/customers/1
+Authorization: Basic admin Password6!
 Content-Type: application/json
 
 {
   "firstName": "raz",
   "lastName": "cohen",
   "phone": "0523561529",
-  "customerTypeName": "simple"
+  "customerTypeName": "raz"
 }
 
 ### update customer - is active
-PUT http://localhost:8081/online-library/customers/active/52
-Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4Nzc5MDk1MywiZXhwIjoxNjg3ODc3MzUzfQ.A-c_6uBKfi7hRkk5rCvvf35XN1u92pxSRyEFJ8aBjpnSUqoXAbUZg5yVJgc2qqhWXM57Tu08Vs2GunKla5grYw
+PUT http://localhost:8081/online-library/customers/active/1
+Authorization: Basic admin Password6!

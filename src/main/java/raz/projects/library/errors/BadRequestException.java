@@ -36,6 +36,7 @@ public class BadRequestException extends LibraryException{
     public BadRequestException(String resourceName, String message) {
         super(message);
         this.resourceName = resourceName;
+        this.message = message;
     }
 
     public BadRequestException(long resourceId) {

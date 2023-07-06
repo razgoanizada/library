@@ -1,6 +1,5 @@
 package raz.projects.library.dto.pages;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +16,7 @@ public class CustomerTypePageDto {
 
     private List<CustomerTypeResponseDto> results;
     private int totalPages;
-    private long totalCategories;
+    private long totalTypes;
     private boolean isFirst;
     private boolean isLast;
     private int pageNo;

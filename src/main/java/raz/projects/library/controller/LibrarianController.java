@@ -54,7 +54,8 @@ public class LibrarianController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<LibrarianResponseDto> addLibrarian (@RequestBody @Valid LibrarianRequestDto dto, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<LibrarianResponseDto> addLibrarian (
+            @RequestBody @Valid LibrarianRequestDto dto, UriComponentsBuilder uriComponentsBuilder) {
 
         var responseDto = librarianService.addLibrarian(dto);
 
