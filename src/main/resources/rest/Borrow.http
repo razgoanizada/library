@@ -1,0 +1,34 @@
+### get all borrowed
+GET http://localhost:8081/online-library/borrow
+Authorization: Basic admin Password6!
+
+### get borrow page
+GET http://localhost:8081/online-library/borrow/page?returnDateEnd=2023-08-15
+Authorization: Basic admin Password6!
+
+### add borrow
+POST http://localhost:8081/online-library/borrow/add
+Authorization: Basic admin Password6!
+Content-Type: application/json
+
+{
+  "customerId": 2,
+  "bookId": 402
+}
+
+### get boroow by id
+GET http://localhost:8081/online-library/borrow/152
+Authorization: Basic admin Password6!
+
+### extra time borrow
+PUT http://localhost:8081/online-library/borrow/extra-time/102
+Authorization: Basic admin Password6!
+Content-Type: application/json
+
+{
+  "days": 30
+}
+
+### return book
+PUT http://localhost:8081/online-library/borrow/return-book/152
+Authorization: Basic admin Password6!

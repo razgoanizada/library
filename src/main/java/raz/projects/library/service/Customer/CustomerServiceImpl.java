@@ -178,7 +178,8 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerResponseDto isActive(long id) {
 
         var customer = customerRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("update customer - is active" ,id, "This customer doesn't exist in the library")
+                () -> new ResourceNotFoundException
+                        ("update customer - is active" ,id, "This customer doesn't exist in the library")
         );
 
         customer.setActive(!customer.isActive());

@@ -12,7 +12,7 @@ Content-Type: application/json
 Authorization: Basic admin Password6!
 
 {
-  "name": "test2",
+  "name": "test7",
   "author": "raz goanizada",
   "description": "fsafdsakfabsfkasbfaskfb dslfdndlfsdnfldsfnsfslfn dlagnalgagnsg",
   "bookcase": "158",
