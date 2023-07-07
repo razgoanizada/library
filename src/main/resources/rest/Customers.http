@@ -8,14 +8,14 @@ Authorization: Basic admin Password6!
 
 ### add customer
 POST http://localhost:8081/online-library/customers/add
-Authorization: Basic admin Password6!
+Authorization: Basic admin2 Password6!
 Content-Type: application/json
 
 {
   "firstName": "raz",
   "lastName": "cohen",
-  "email": "radfgdfadaaa@gmail.com",
-  "tz": "318969433",
+  "email": "rffadaaa@gmail.com",
+  "tz": "015901390",
   "phone": "0524046007",
   "address": "dsfsf",
   "customerTypeName": "raz",
@@ -27,7 +27,7 @@ GET http://localhost:8081/online-library/customers/2
 Authorization: Basic admin Password6!
 
 ### udpdate customer by id
-PUT http://localhost:8081/online-library/customers/1
+PUT http://localhost:8081/online-library/customers/2
 Authorization: Basic admin Password6!
 Content-Type: application/json
 

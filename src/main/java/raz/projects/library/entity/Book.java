@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
+import java.util.List;
 
 
 @Entity
@@ -49,5 +50,9 @@ public class Book {
 
     @CreationTimestamp
     private Date creationDate;
+
+
+    @OneToMany(mappedBy = "book")
+    private List<Borrow> borrows;
 
 }

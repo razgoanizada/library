@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 import raz.projects.library.dto.pages.BookCategoriesPageDto;
 import raz.projects.library.dto.request.BookCategoriesRequestDto;
 import raz.projects.library.dto.response.BookCategoriesResponseDto;
+import raz.projects.library.entity.Book;
 import raz.projects.library.entity.BookCategories;
 import raz.projects.library.errors.BadRequestException;
 import raz.projects.library.errors.ResourceNotFoundException;
 import raz.projects.library.repository.BookCategoriesRepository;
+import raz.projects.library.repository.BookRepository;
 
 import java.util.List;
 
@@ -24,6 +26,7 @@ import java.util.List;
 public class BookCategoriesServiceImpl implements BookCategoriesService {
 
     private final BookCategoriesRepository bookCategoriesRepository;
+    private final BookRepository bookRepository;
     private final ModelMapper mapper;
     @Override
     public List<BookCategoriesResponseDto> getCategories() {
@@ -110,6 +113,14 @@ public class BookCategoriesServiceImpl implements BookCategoriesService {
                 () -> new BadRequestException(
                         "delete book - category", id, "This book - category doesn't exist in the library")
         );
+
+        List<Book> books = bookRepository.findAllByBookCategories(category);
+
+        if (!books.isEmpty()) {
+            books.forEach(
+                    book -> book.setBookCategories(null)
+            );
+        }
 
         if (exists)
             bookCategoriesRepository.deleteById(id);

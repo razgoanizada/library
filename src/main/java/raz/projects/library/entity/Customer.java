@@ -9,6 +9,7 @@ import raz.projects.library.enums.Gender;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -57,4 +58,7 @@ public class Customer {
 
     @CreationTimestamp
     private Date CreationDate;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Borrow> borrows;
 }

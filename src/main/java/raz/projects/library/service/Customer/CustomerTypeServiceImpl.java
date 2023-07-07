@@ -13,9 +13,11 @@ import raz.projects.library.dto.pages.CustomerTypePageDto;
 import raz.projects.library.dto.request.CustomerTypeRequestDto;
 import raz.projects.library.dto.response.CustomerTypeResponseDto;
 import raz.projects.library.dto.update.CustomerTypeUpdateDto;
+import raz.projects.library.entity.Customer;
 import raz.projects.library.entity.CustomerType;
 import raz.projects.library.errors.BadRequestException;
 import raz.projects.library.errors.ResourceNotFoundException;
+import raz.projects.library.repository.CustomerRepository;
 import raz.projects.library.repository.CustomerTypeRepository;
 
 import java.util.List;
@@ -25,6 +27,7 @@ import java.util.List;
 public class CustomerTypeServiceImpl implements CustomerTypeService {
 
     private final CustomerTypeRepository customerTypeRepository;
+    private final CustomerRepository customerRepository;
     private final ModelMapper mapper;
 
     @Override
@@ -131,6 +134,14 @@ public class CustomerTypeServiceImpl implements CustomerTypeService {
                 () -> new BadRequestException(
                         "delete customer - type", id, "This customer - type doesn't exist in the library")
         );
+
+        List<Customer> customers = customerRepository.findAllByCustomerType(customerType);
+
+        if (!customers.isEmpty()) {
+          customers.forEach(
+                  customer -> customer.setCustomerType(null)
+          );
+        }
 
         if (exists)
             customerTypeRepository.deleteById(id);

@@ -16,10 +16,12 @@ import raz.projects.library.dto.response.BookResponseDto;
 import raz.projects.library.dto.update.BookUpdate;
 import raz.projects.library.entity.Book;
 import raz.projects.library.entity.BookCategories;
+import raz.projects.library.entity.Borrow;
 import raz.projects.library.errors.BadRequestException;
 import raz.projects.library.errors.ResourceNotFoundException;
 import raz.projects.library.repository.BookCategoriesRepository;
 import raz.projects.library.repository.BookRepository;
+import raz.projects.library.repository.BorrowRepository;
 import raz.projects.library.repository.LibrarianRepository;
 
 import java.util.List;
@@ -32,6 +34,7 @@ public class BookServiceImpl implements BookService{
     private final BookRepository bookRepository;
     private final BookCategoriesRepository bookCategoriesRepository;
     private final LibrarianRepository librarianRepository;
+    private final BorrowRepository borrowRepository;
     private final ModelMapper mapper;
 
     @Override
@@ -182,8 +185,17 @@ public class BookServiceImpl implements BookService{
                 () -> new BadRequestException("delete book", id, "This book doesn't exist in the library")
         );
 
+        List<Borrow> borrows = borrowRepository.findAllByBook(book);
+
+        if (!borrows.isEmpty())
+            borrows.forEach(
+                    borrow -> borrow.setBook(null)
+            );
+
         if (exists)
             bookRepository.deleteById(id);
+
+        book.setBorrows(null);
 
         return mapper.map(book, BookResponseDto.class);
     }

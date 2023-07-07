@@ -12,7 +12,7 @@ Content-Type: application/json
 Authorization: Basic admin Password6!
 
 {
-  "name": "dfd",
+  "name": "raz",
   "days": 2,
   "amount": 1
 }
@@ -32,5 +32,5 @@ Authorization: Basic admin Password6!
 }
 
 ### delete type by id
-DELETE http://localhost:8081/online-library/customer-type/403
+DELETE http://localhost:8081/online-library/customer-type/303
 Authorization: Basic admin Password6!

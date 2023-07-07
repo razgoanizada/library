@@ -8,12 +8,12 @@ Authorization: Basic admin Password6!
 
 ### add borrow
 POST http://localhost:8081/online-library/borrow/add
-Authorization: Basic admin Password6!
+Authorization: Basic admin2 Password6!
 Content-Type: application/json
 
 {
-  "customerId": 2,
-  "bookId": 402
+  "customerId": 52,
+  "bookId": 453
 }
 
 ### get boroow by id

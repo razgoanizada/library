@@ -14,15 +14,15 @@ Authorization: Basic admin Password6!
 {
   "firstName": "razg",
   "lastName": "goanizada",
-  "userName": "sfsdff!",
-  "password": "666666Raz!",
-  "email": "fsdfsdf@dsfsdf.com",
+  "userName": "admin2",
+  "password": "Password6!",
+  "email": "fsddfsdf@dsfsdf.com",
   "phone": "052404607",
-  "tz": "999093065",
+  "tz": "015901390",
   "address": "kfar sava",
   "dateOfBirth": "2020-01-01",
   "gender": "male",
-  "permission": "pro"
+  "permission": "admin"
 }
 
 ###get librarian by id
@@ -55,5 +55,5 @@ Authorization: Basic admin Password6!
 }
 
 ### delete librarian by id
-DELETE http://localhost:8081/online-library/librarians/152
+DELETE http://localhost:8081/online-library/librarians/202
 Authorization: Basic admin Password6!

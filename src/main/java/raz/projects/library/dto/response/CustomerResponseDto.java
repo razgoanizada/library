@@ -7,6 +7,7 @@ import raz.projects.library.enums.Gender;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,4 +27,5 @@ public class CustomerResponseDto {
     private String customerTypeName;
     private String addedByUserName;
     private Date CreationDate;
+    private List<BorrowResponseDto> borrows;
 }

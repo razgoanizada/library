@@ -29,5 +29,5 @@ Content-Type: application/json
 }
 
 ### delete category by id
-DELETE http://localhost:8081/online-library/books-categories/253
+DELETE http://localhost:8081/online-library/books-categories/202
 Authorization: Basic admin Password6!

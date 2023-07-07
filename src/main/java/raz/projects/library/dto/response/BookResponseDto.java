@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,4 +21,5 @@ public class BookResponseDto {
     private String bookCategoriesName;
     private String addedByUserName;
     private Date creationDate;
+    private List<BorrowResponseDto> borrows;
 }

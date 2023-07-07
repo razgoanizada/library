@@ -9,19 +9,19 @@ Authorization: Basic admin Password6!
 ### add book
 POST http://localhost:8081/online-library/books/add
 Content-Type: application/json
-Authorization: Basic admin Password6!
+Authorization: Basic admin2 Password6!
 
 {
-  "name": "test7",
+  "name": "test9",
   "author": "raz goanizada",
   "description": "fsafdsakfabsfkasbfaskfb dslfdndlfsdnfldsfnsfslfn dlagnalgagnsg",
   "bookcase": "158",
-  "bookCategoriesName": "drama",
+  "bookCategoriesName": "fdf",
   "publishYear": "1998"
 }
 
 ###get book by id
-GET http://localhost:8081/online-library/books/153
+GET http://localhost:8081/online-library/books/352
 Authorization: Basic admin Password6!
 
 ### update book
@@ -36,5 +36,5 @@ Authorization: Basic admin Password6!
 }
 
 ### delete book by id
-DELETE http://localhost:8081/online-library/books/102
+DELETE http://localhost:8081/online-library/books/254
 Authorization: Basic admin Password6!

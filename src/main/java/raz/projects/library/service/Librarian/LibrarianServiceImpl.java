@@ -20,12 +20,10 @@ import raz.projects.library.dto.request.LibrarianRequestDto;
 import raz.projects.library.dto.response.LibrarianResponseDto;
 import raz.projects.library.dto.update.LibrarianChangePassword;
 import raz.projects.library.dto.update.LibrarianUpdate;
-import raz.projects.library.entity.Librarian;
-import raz.projects.library.entity.Permissions;
+import raz.projects.library.entity.*;
 import raz.projects.library.errors.BadRequestException;
 import raz.projects.library.errors.ResourceNotFoundException;
-import raz.projects.library.repository.LibrarianRepository;
-import raz.projects.library.repository.PermissionsRepository;
+import raz.projects.library.repository.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +35,9 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
 
     private final LibrarianRepository librarianRepository;
     private final PermissionsRepository permissionsRepository;
+    private final BookRepository bookRepository;
+    private final CustomerRepository customerRepository;
+    private final BorrowRepository borrowRepository;
     private final ModelMapper mapper;
     private final PasswordEncoder passwordEncoder;
 
@@ -190,6 +191,28 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
                 () -> new BadRequestException(
                         "delete librarian", id, "This librarian does not exist in the library")
         );
+
+        List<Book> books = bookRepository.findAllByAddedBy(librarian);
+        if (!books.isEmpty()) {
+            books.forEach(
+                    book -> book.setAddedBy(null)
+            );
+        }
+
+        List<Customer> customers = customerRepository.findAllByAddedBy(librarian);
+        if (!customers.isEmpty()) {
+            customers.forEach(
+                    customer -> customer.setAddedBy(null)
+            );
+        }
+
+        List<Borrow> borrows = borrowRepository.findAllByAddedBy(librarian);
+        if (!borrows.isEmpty()) {
+            borrows.forEach(
+                    borrow -> borrow.setAddedBy(null)
+            );
+        }
+
 
         if (exists)
             librarianRepository.deleteById(id);
