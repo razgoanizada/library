@@ -16,6 +16,7 @@ public interface LibrarianService {
                                           String phone, String tz, String useName);
     LibrarianResponseDto addLibrarian (LibrarianRequestDto dto);
     LibrarianResponseDto getLibrarianById(Long id);
+    void updateLibrarianLastLogin(String userName);
     LibrarianResponseDto updateLibrarianById (LibrarianUpdate dto, Long id);
     LibrarianResponseDto deleteLibrarianById (Long id);
     LibrarianResponseDto librarianChangePassword(LibrarianChangePassword dto, Long id);

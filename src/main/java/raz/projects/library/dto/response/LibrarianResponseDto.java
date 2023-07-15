@@ -7,6 +7,7 @@ import raz.projects.library.enums.Gender;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -24,4 +25,5 @@ public class LibrarianResponseDto {
     private LocalDate dateOfBirth;
     private Date creationDate;
     private String permission;
+    private LocalDateTime lastLogin;
 }

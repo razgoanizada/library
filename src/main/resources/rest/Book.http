@@ -9,14 +9,14 @@ Authorization: Basic admin Password6!
 ### add book
 POST http://localhost:8081/online-library/books/add
 Content-Type: application/json
-Authorization: Basic admin2 Password6!
+Authorization: Basic admin Password1!
 
 {
-  "name": "test9",
+  "name": "hfghgfh",
   "author": "raz goanizada",
   "description": "fsafdsakfabsfkasbfaskfb dslfdndlfsdnfldsfnsfslfn dlagnalgagnsg",
   "bookcase": "158",
-  "bookCategoriesName": "fdf",
+  "bookCategoriesName": "fsdf",
   "publishYear": "1998"
 }
 

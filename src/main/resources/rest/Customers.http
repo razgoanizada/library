@@ -8,13 +8,13 @@ Authorization: Basic admin Password6!
 
 ### add customer
 POST http://localhost:8081/online-library/customers/add
-Authorization: Basic admin2 Password6!
+Authorization: Basic admin Password6!
 Content-Type: application/json
 
 {
   "firstName": "raz",
   "lastName": "cohen",
-  "email": "rffadaaa@gmail.com",
+  "email": "asdasd@gmail.com",
   "tz": "015901390",
   "phone": "0524046007",
   "address": "dsfsf",

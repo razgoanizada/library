@@ -20,4 +20,7 @@ public class Permissions {
 
     @NotNull
     private String permission;
+
+    @NotNull
+    private String image;
 }

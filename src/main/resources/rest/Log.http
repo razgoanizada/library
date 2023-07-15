@@ -1,0 +1,7 @@
+### all logs
+GET http://localhost:8081/online-library/logs
+Authorization: Basic admin Password1!
+
+### all logs page
+GET http://localhost:8081/online-library/logs/page?isLogin=true&username=admin&DateStart=2023-07-15
+Authorization: Basic admin Password1!

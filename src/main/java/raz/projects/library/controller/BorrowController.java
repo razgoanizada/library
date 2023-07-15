@@ -30,7 +30,7 @@ public class BorrowController {
     }
 
     @GetMapping("/page")
-    public ResponseEntity<BorrowPageDto> getBooksPage (
+    public ResponseEntity<BorrowPageDto> getBorrowedPage (
 
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
             @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize,

@@ -4,5 +4,15 @@ Content-Type: application/json
 
 {
   "userName": "admin",
-  "password": "Password6!"
+  "password": "Password1!"
+}
+
+### change password
+PUT http://localhost:8081/online-library/change-password
+Authorization: Basic admin2 Password6!
+Content-Type: application/json
+
+{
+  "newPassword": "Raz12345!",
+  "repeatNewPassword": "Raz12345!"
 }

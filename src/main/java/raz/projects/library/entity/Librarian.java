@@ -5,8 +5,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import raz.projects.library.enums.Gender;
+
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -55,4 +57,6 @@ public class Librarian {
     @ManyToOne
     @JoinColumn(name = "permissions_permission")
     private Permissions permission;
+
+    private LocalDateTime lastLogin;
 }

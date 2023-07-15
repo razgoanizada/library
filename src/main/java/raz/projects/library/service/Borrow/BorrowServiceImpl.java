@@ -112,6 +112,13 @@ public class BorrowServiceImpl implements BorrowService {
                         "add borrow - get customer" ,dto.getCustomerId(), "This customer doesn't exist in the library")
         );
 
+        if (!customer.isActive()) {
+            throw new BadRequestException(
+                    "add borrow",
+                    dto.getCustomerId(),
+                    "It is not possible to lend a book to an inactive customer");
+        }
+
         if (customer.getCustomerType() == null) {
             throw new BadRequestException(
                     "add borrow",

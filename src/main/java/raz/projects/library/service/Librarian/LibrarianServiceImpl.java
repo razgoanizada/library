@@ -25,6 +25,7 @@ import raz.projects.library.errors.BadRequestException;
 import raz.projects.library.errors.ResourceNotFoundException;
 import raz.projects.library.repository.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,6 +146,17 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
     }
 
     @Override
+    public void updateLibrarianLastLogin(String userName) {
+
+        var librarian = librarianRepository.findLibrarianByUserNameIgnoreCase(userName).orElseThrow(
+                () -> new ResourceNotFoundException(
+                        "get librarian" ,userName, "This librarian doesn't exist in the library")
+        );
+
+        librarian.setLastLogin(LocalDateTime.now());
+    }
+
+    @Override
     public LibrarianResponseDto updateLibrarianById(LibrarianUpdate dto, Long id) {
 
 
@@ -176,11 +188,25 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
                         "get librarian" ,id, "This librarian doesn't exist in the library")
         );
 
+        return change(dto, librarian);
+    }
+
+    private LibrarianResponseDto change(LibrarianChangePassword dto, Librarian librarian) {
         librarian.setPassword(passwordEncoder.encode(dto.getNewPassword()));
 
         var saved = librarianRepository.save(librarian);
 
         return mapper.map(saved, LibrarianResponseDto.class);
+    }
+
+    public LibrarianResponseDto librarianChangePassword(LibrarianChangePassword dto, String userName){
+
+        var librarian = librarianRepository.findLibrarianByUserNameIgnoreCase(userName).orElseThrow(
+                () -> new ResourceNotFoundException(
+                        "get librarian" ,userName, "This librarian doesn't exist in the library")
+        );
+
+        return change(dto, librarian);
     }
 
     @Override
@@ -191,6 +217,12 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
                 () -> new BadRequestException(
                         "delete librarian", id, "This librarian does not exist in the library")
         );
+
+        if (librarian.getUserName().equals("admin")) {
+
+            throw new BadRequestException(
+                    "delete librarian", "Unable to delete admin user");
+        }
 
         List<Book> books = bookRepository.findAllByAddedBy(librarian);
         if (!books.isEmpty()) {
