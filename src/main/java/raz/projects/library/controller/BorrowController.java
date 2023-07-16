@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/online-library/borrow")
+@RequestMapping("/api/v1/borrow")
 public class BorrowController {
 
     private final BorrowService borrowService;

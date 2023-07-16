@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @PreAuthorize("hasAuthority('admin')")
-@RequestMapping("/online-library/customer-type")
+@RequestMapping("/api/v1/customer-type")
 public class CustomerTypeController {
 
     private final CustomerTypeService customerTypeService;

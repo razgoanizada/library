@@ -1,15 +1,15 @@
 ### sign in
-POST http://localhost:8081/online-library/login
+POST http://localhost:8081/api/v1/login
 Content-Type: application/json
 
 {
-  "userName": "admin",
-  "password": "Password1!"
+  "userName": "admin2",
+  "password": "Raz12345!"
 }
 
 ### change password
-PUT http://localhost:8081/online-library/change-password
-Authorization: Basic admin2 Password6!
+PUT http://localhost:8081/api/v1/change-password
+Authorization: Basic admin2 Raz12345!
 Content-Type: application/json
 
 {

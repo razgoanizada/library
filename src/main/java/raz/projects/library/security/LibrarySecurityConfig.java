@@ -53,8 +53,9 @@ public class LibrarySecurityConfig {
                 .addFilterBefore(filter, BasicAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/online-library/login/**").permitAll();
-                    auth.requestMatchers("/online-library/**").authenticated();
+                    auth.requestMatchers("/api/v1/login/**").permitAll();
+                    auth.requestMatchers("/api/v1/**").authenticated();
+                    auth.anyRequest().permitAll();
                 })
                 .httpBasic(basic -> basic.authenticationEntryPoint(new LibraryAuthenticationEntryPoint()))
                 .build();

@@ -1,14 +1,14 @@
 ### ALL cutomers
-GET http://localhost:8081/online-library/customers
-Authorization: Basic admin Password6!
+GET http://localhost:8081/api/v1/customers
+Authorization: Basic admin2 Raz12345!
 
 ### get librarians page
-GET http://localhost:8081/online-library/customers/page?firstName=raz
-Authorization: Basic admin Password6!
+GET http://localhost:8081/api/v1/customers/page?firstName=raz
+Authorization: Basic admin2 Raz12345!
 
 ### add customer
-POST http://localhost:8081/online-library/customers/add
-Authorization: Basic admin Password6!
+POST http://localhost:8081/api/v1/customers/add
+Authorization: Basic admin2 Raz12345!
 Content-Type: application/json
 
 {
@@ -23,12 +23,12 @@ Content-Type: application/json
 }
 
 ###get customer by id
-GET http://localhost:8081/online-library/customers/2
-Authorization: Basic admin Password6!
+GET http://localhost:8081/api/v1/customers/2
+Authorization: Basic admin2 Raz12345!
 
 ### udpdate customer by id
-PUT http://localhost:8081/online-library/customers/2
-Authorization: Basic admin Password6!
+PUT http://localhost:8081/api/v1/customers/2
+Authorization: Basic admin2 Raz12345!
 Content-Type: application/json
 
 {
@@ -39,5 +39,5 @@ Content-Type: application/json
 }
 
 ### update customer - is active
-PUT http://localhost:8081/online-library/customers/active/1
-Authorization: Basic admin Password6!
+PUT http://localhost:8081/api/v1/customers/active/1
+Authorization: Basic admin2 Raz12345!

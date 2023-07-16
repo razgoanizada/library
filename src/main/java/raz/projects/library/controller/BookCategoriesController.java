@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @PreAuthorize("hasAuthority('admin')")
-@RequestMapping("/online-library/books-categories")
+@RequestMapping("/api/v1/books-categories")
 public class BookCategoriesController {
 
     private final BookCategoriesService bookCategoriesService;

@@ -1,15 +1,15 @@
 ### ALL BOOKS
-GET http://localhost:8081/online-library/books
-Authorization: Basic admin Password6!
+GET http://localhost:8081/api/v1/books
+Authorization: Basic admin2 Raz12345!
 
 ### get books page
-GET http://localhost:8081/online-library/books/page?addedBy=1
-Authorization: Basic admin Password6!
+GET http://localhost:8081/api/v1/books/page?addedBy=1
+Authorization: Basic admin2 Raz12345!
 
 ### add book
-POST http://localhost:8081/online-library/books/add
+POST http://localhost:8081/api/v1/books/add
 Content-Type: application/json
-Authorization: Basic admin Password1!
+Authorization: Basic admin2 Raz12345!
 
 {
   "name": "hfghgfh",
@@ -21,13 +21,13 @@ Authorization: Basic admin Password1!
 }
 
 ###get book by id
-GET http://localhost:8081/online-library/books/352
-Authorization: Basic admin Password6!
+GET http://localhost:8081/api/v1/books/352
+Authorization: Basic admin2 Raz12345!
 
 ### update book
-PUT http://localhost:8081/online-library/books/153
+PUT http://localhost:8081/api/v1/books/153
 Content-Type: application/json
-Authorization: Basic admin Password6!
+Authorization: Basic admin2 Raz12345!
 
 {
   "bookCategoriesName": "drama",
@@ -36,5 +36,5 @@ Authorization: Basic admin Password6!
 }
 
 ### delete book by id
-DELETE http://localhost:8081/online-library/books/254
-Authorization: Basic admin Password6!
+DELETE http://localhost:8081/api/v1/books/254
+Authorization: Basic admin2 Raz12345!

@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @PreAuthorize("hasAuthority('admin')")
-@RequestMapping("/online-library/logs")
+@RequestMapping("/api/v1/logs")
 public class LogController {
 
     private final LogService logService;

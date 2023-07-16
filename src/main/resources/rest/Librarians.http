@@ -1,15 +1,15 @@
 ### ALL librarians
-GET http://localhost:8081/online-library/librarians
-Authorization: Basic admin Password1!
+GET http://localhost:8081/api/v1/librarians
+Authorization: Basic admin2 Raz12345!
 
 ### get librarians page
-GET http://localhost:8081/online-library/librarians/page?firstName=raz&permission=4
-Authorization: Basic admin Password1!
+GET http://localhost:8081/api/v1/librarians/page?firstName=raz&permission=4
+Authorization: Basic admin2 Raz12345!
 
 ### add librarian
-POST http://localhost:8081/online-library/librarians/add
+POST http://localhost:8081/api/v1/librarians/add
 Content-Type: application/json
-Authorization: Basic admin Password1!
+Authorization: Basic admin2 Raz12345!
 
 {
   "firstName": "razg",
@@ -26,13 +26,13 @@ Authorization: Basic admin Password1!
 }
 
 ###get librarian by id
-GET http://localhost:8081/online-library/librarians/152
-Authorization: Basic admin Password6!
+GET http://localhost:8081/api/v1/librarians/152
+Authorization: Basic admin2 Raz12345!
 
 ### update librarian
-PUT http://localhost:8081/online-library/librarians/152
+PUT http://localhost:8081/api/v1/librarians/152
 Content-Type: application/json
-Authorization: Basic admin Password1!
+Authorization: Basic admin2 Raz12345!
 
 {
   "firstName": "dfsfsdf",
@@ -45,9 +45,9 @@ Authorization: Basic admin Password1!
 }
 
 ### change password
-PUT http://localhost:8081/online-library/librarians/change-password/1
+PUT http://localhost:8081/api/v1/librarians/change-password/1
 Content-Type: application/json
-Authorization: Basic admin Password6!
+Authorization: Basic admin2 Raz12345!
 
 {
   "newPassword": "Password6!",
@@ -55,5 +55,5 @@ Authorization: Basic admin Password6!
 }
 
 ### delete librarian by id
-DELETE http://localhost:8081/online-library/librarians/1
-Authorization: Basic admin Password1!
+DELETE http://localhost:8081/api/v1/librarians/1
+Authorization: Basic admin2 Raz12345!

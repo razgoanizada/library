@@ -1,14 +1,14 @@
 ### all categories
-GET http://localhost:8081/online-library/books-categories
-Authorization: Basic admin Password1!
+GET http://localhost:8081/api/v1/books-categories
+Authorization: Basic admin2 Raz12345!
 
 ### all categories page
-GET http://localhost:8081/online-library/books-categories/page?name=dr
-Authorization: Basic admin Password1!
+GET http://localhost:8081/api/v1/books-categories/page?name=dr
+Authorization: Basic admin2 Raz12345!
 
 ### add category
-POST http://localhost:8081/online-library/books-categories/add
-Authorization: Basic admin Password6!
+POST http://localhost:8081/api/v1/books-categories/add
+Authorization: Basic admin2 Raz12345!
 Content-Type: application/json
 
 {
@@ -16,12 +16,12 @@ Content-Type: application/json
 }
 
 ### get category by id
-GET http://localhost:8081/online-library/books-categories/202
-Authorization: Basic admin Password6!
+GET http://localhost:8081/api/v1/books-categories/202
+Authorization: Basic admin2 Raz12345!
 
 ### update category by id
-PUT http://localhost:8081/online-library/books-categories/202
-Authorization: Basic admin Password6!
+PUT http://localhost:8081/api/v1/books-categories/202
+Authorization: Basic admin2 Raz12345!
 Content-Type: application/json
 
 {
@@ -29,5 +29,5 @@ Content-Type: application/json
 }
 
 ### delete category by id
-DELETE http://localhost:8081/online-library/books-categories/202
-Authorization: Basic admin Password6!
+DELETE http://localhost:8081/api/v1/books-categories/202
+Authorization: Basic admin2 Raz12345!

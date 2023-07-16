@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @PreAuthorize("hasAuthority('admin')")
-@RequestMapping("/online-library/librarians")
+@RequestMapping("/api/v1/librarians")
 public class LibrarianController {
 
     private final LibrarianService librarianService;

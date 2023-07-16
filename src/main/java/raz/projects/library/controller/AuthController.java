@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/online-library")
+@RequestMapping("/api/v1")
 public class AuthController {
 
     private final LibrarianServiceImpl authService;
