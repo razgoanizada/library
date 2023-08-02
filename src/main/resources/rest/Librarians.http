@@ -1,28 +1,28 @@
 ### ALL librarians
 GET http://localhost:8081/api/v1/librarians
-Authorization: Basic admin2 Raz12345!
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjIiLCJpYXQiOjE2OTAzMDM4MzgsImV4cCI6MTY5MDMwMzg0OH0.dESZo4sqwS-GTP5TE-Ern6fkaqkt89DQAdOGQzFoF6MvlNKeVbWm5t7vSf0fXSd2nWaSDEOVEKyFpAWJYUZI9w
 
 ### get librarians page
 GET http://localhost:8081/api/v1/librarians/page?firstName=raz&permission=4
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic simple Password6!
 
 ### add librarian
 POST http://localhost:8081/api/v1/librarians/add
 Content-Type: application/json
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin2 Password6!
 
 {
   "firstName": "razg",
   "lastName": "goanizada",
-  "userName": "admin2",
+  "userName": "simple",
   "password": "Password6!",
-  "email": "fsddfsdf@dsfsdf.com",
+  "email": "sdssd@dsfsdf.com",
   "phone": "052404607",
-  "tz": "015901390",
+  "tz": "999595762",
   "address": "kfar sava",
   "dateOfBirth": "2020-01-01",
   "gender": "male",
-  "permission": "admin"
+  "permission": "simple"
 }
 
 ###get librarian by id

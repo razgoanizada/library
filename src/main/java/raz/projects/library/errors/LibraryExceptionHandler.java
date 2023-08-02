@@ -4,6 +4,7 @@ import jakarta.validation.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -43,15 +44,13 @@ public class LibraryExceptionHandler {
 
         var problemDetail =
                 ProblemDetail.
-                        forStatusAndDetail(HttpStatus.BAD_REQUEST, "Validation Failed");
+                        forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
 
             exception.getBindingResult().getFieldErrors().forEach(fieldError -> {
-                problemDetail.setProperty("message", fieldError.getDefaultMessage());
+                problemDetail.setProperty("detail", fieldError.getDefaultMessage());
                 problemDetail.setProperty("Validation Failed for property", fieldError.getField());
                 problemDetail.setProperty("rejectedValue", fieldError.getRejectedValue());
             });
-
-
 
 
         problemDetail.setProperty("timestamp", LocalDateTime.now());
@@ -75,9 +74,19 @@ public class LibraryExceptionHandler {
         return problemDetail;
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    public ProblemDetail handleAccessDeniedException(AccessDeniedException exception){
+
+        var problemDetail =
+                ProblemDetail.
+                        forStatusAndDetail(HttpStatus.FORBIDDEN, exception.getMessage());
+        problemDetail.setProperty("timestamp", LocalDateTime.now());
+        return problemDetail;
+
+    }
 
     @ExceptionHandler(LibraryException.class)
-    public ProblemDetail handleBlogException(LibraryException exception) {
+    public ProblemDetail handleLibraryException(LibraryException exception) {
         var problemDetail =
                 ProblemDetail.
                         forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());

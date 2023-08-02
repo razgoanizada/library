@@ -5,6 +5,7 @@ import raz.projects.library.dto.request.LibrarianRequestDto;
 import raz.projects.library.dto.response.LibrarianResponseDto;
 import raz.projects.library.dto.update.LibrarianChangePassword;
 import raz.projects.library.dto.update.LibrarianUpdate;
+import raz.projects.library.entity.Librarian;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public interface LibrarianService {
                                           String phone, String tz, String useName);
     LibrarianResponseDto addLibrarian (LibrarianRequestDto dto);
     LibrarianResponseDto getLibrarianById(Long id);
+    Librarian getLibrarianByUserName(String userName);
     void updateLibrarianLastLogin(String userName);
     LibrarianResponseDto updateLibrarianById (LibrarianUpdate dto, Long id);
     LibrarianResponseDto deleteLibrarianById (Long id);

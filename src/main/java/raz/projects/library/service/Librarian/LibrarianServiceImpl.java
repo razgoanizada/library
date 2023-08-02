@@ -146,6 +146,15 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
     }
 
     @Override
+    public Librarian getLibrarianByUserName(String userName) {
+
+        return librarianRepository.findLibrarianByUserNameIgnoreCase(userName).orElseThrow(
+                () -> new ResourceNotFoundException(
+                        "get librarian" ,userName, "This librarian doesn't exist in the library")
+        );
+    }
+
+    @Override
     public void updateLibrarianLastLogin(String userName) {
 
         var librarian = librarianRepository.findLibrarianByUserNameIgnoreCase(userName).orElseThrow(

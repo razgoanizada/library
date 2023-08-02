@@ -3,7 +3,7 @@ GET http://localhost:8081/api/v1/customers
 Authorization: Basic admin2 Raz12345!
 
 ### get librarians page
-GET http://localhost:8081/api/v1/customers/page?firstName=raz
+GET http://localhost:8081/api/v1/customers/page
 Authorization: Basic admin2 Raz12345!
 
 ### add customer
@@ -14,8 +14,8 @@ Content-Type: application/json
 {
   "firstName": "raz",
   "lastName": "cohen",
-  "email": "asdasd@gmail.com",
-  "tz": "015901390",
+  "email": "asdsa@gmail.com",
+  "tz": "318969433",
   "phone": "0524046007",
   "address": "dsfsf",
   "customerTypeName": "raz",

@@ -100,9 +100,14 @@ public class BookCategoriesServiceImpl implements BookCategoriesService {
 
         category.setName(dto.getName());
 
-        var save = bookCategoriesRepository.save(category);
-
-        return mapper.map(save, BookCategoriesResponseDto.class);
+        try {
+            bookCategoriesRepository.save(category);
+            return mapper.map(category, BookCategoriesResponseDto.class);
+        }
+        catch (DataIntegrityViolationException exception) {
+            throw new BadRequestException(
+                    "add book -category ", category.getId(), "This book - category is already in the library");
+        }
     }
 
     @Override

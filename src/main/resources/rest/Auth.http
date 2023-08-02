@@ -9,7 +9,7 @@ Content-Type: application/json
 
 ### change password
 PUT http://localhost:8081/api/v1/change-password
-Authorization: Basic admin2 Raz12345!
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjIiLCJpYXQiOjE2OTAxNDE0MDksImV4cCI6MTY5MDE0MTUwOX0.hT00woE-35PL3yUgoYlLiTH4_KiKK9ilVy7_kuuVH-YjhFjwQ6hWsWE5jpJmAr8FxcAWYYFj_uRA9ZHePZ4qiA
 Content-Type: application/json
 
 {

@@ -1,6 +1,6 @@
 ### ALL BOOKS
 GET http://localhost:8081/api/v1/books
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 
 ### get books page
 GET http://localhost:8081/api/v1/books/page?addedBy=1
@@ -9,14 +9,14 @@ Authorization: Basic admin2 Raz12345!
 ### add book
 POST http://localhost:8081/api/v1/books/add
 Content-Type: application/json
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 
 {
-  "name": "hfghgfh",
+  "name": "sdfdf",
   "author": "raz goanizada",
   "description": "fsafdsakfabsfkasbfaskfb dslfdndlfsdnfldsfnsfslfn dlagnalgagnsg",
   "bookcase": "158",
-  "bookCategoriesName": "fsdf",
+  "bookCategoriesName": "drama",
   "publishYear": "1998"
 }
 

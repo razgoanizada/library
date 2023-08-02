@@ -9,10 +9,10 @@ Authorization: Basic admin2 Raz12345!
 ### add customer type
 POST http://localhost:8081/api/v1/customer-type/add
 Content-Type: application/json
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 
 {
-  "name": "raz",
+  "name": "",
   "days": 2,
   "amount": 1
 }

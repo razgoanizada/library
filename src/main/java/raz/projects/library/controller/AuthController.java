@@ -9,12 +9,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import raz.projects.library.dto.request.SignInRequestDto;
+import raz.projects.library.dto.response.SignInResponseDto;
 import raz.projects.library.dto.update.LibrarianChangePassword;
 import raz.projects.library.security.JWTProvider;
 import raz.projects.library.service.Librarian.LibrarianServiceImpl;
 import raz.projects.library.service.Log.LogService;
-
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,7 +26,7 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
-    public ResponseEntity<Object> signIn(
+    public ResponseEntity<SignInResponseDto> signIn(
             @RequestBody @Valid SignInRequestDto dto, HttpServletRequest httpServletRequest) {
         var user = authService.loadUserByUsername(dto.getUserName());
 
@@ -39,11 +38,13 @@ public class AuthController {
 
             var token = jwtProvider.generateToken(user.getUsername());
 
+            var permission = authService.getLibrarianByUserName(dto.getUserName()).getPermission().getPermission();
+
             authService.updateLibrarianLastLogin(user.getUsername());
 
             logService.logLoginAttempt(dto.getUserName(), httpServletRequest.getRemoteAddr(), true);
 
-            return ResponseEntity.ok(Map.of("jwt", token));
+            return ResponseEntity.ok(new SignInResponseDto(token, permission));
         }
 
         logService.logLoginAttempt(dto.getUserName(), httpServletRequest.getRemoteAddr(), false);
@@ -60,4 +61,6 @@ public class AuthController {
         return ResponseEntity.accepted().body(authService.librarianChangePassword(dto, userName));
 
     }
+
+
 }

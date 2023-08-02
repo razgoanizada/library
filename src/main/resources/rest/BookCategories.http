@@ -1,31 +1,31 @@
 ### all categories
 GET http://localhost:8081/api/v1/books-categories
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 
 ### all categories page
-GET http://localhost:8081/api/v1/books-categories/page?name=dr
-Authorization: Basic admin2 Raz12345!
+GET http://localhost:8081/api/v1/books-categories/page?pageNo=1
+Authorization: Basic admin Password1!
 
 ### add category
 POST http://localhost:8081/api/v1/books-categories/add
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 Content-Type: application/json
 
 {
-  "name": "gfdgdfg"
+  "name": "fsdfsdf"
 }
 
 ### get category by id
-GET http://localhost:8081/api/v1/books-categories/202
+GET http://localhost:8081/api/v1/books-categories/302
 Authorization: Basic admin2 Raz12345!
 
 ### update category by id
-PUT http://localhost:8081/api/v1/books-categories/202
-Authorization: Basic admin2 Raz12345!
+PUT http://localhost:8081/api/v1/books-categories/302
+Authorization: Basic admin Password1!
 Content-Type: application/json
 
 {
-  "name": "drama"
+  "name": "fsdfsdf"
 }
 
 ### delete category by id

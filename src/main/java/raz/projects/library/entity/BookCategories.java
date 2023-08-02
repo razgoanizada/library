@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "book_categories",
-        uniqueConstraints =    @UniqueConstraint(columnNames = {"name"}))
+        uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
 public class BookCategories {
 
     @Id
@@ -20,4 +20,5 @@ public class BookCategories {
 
     @NotNull
     private String name;
+
 }
