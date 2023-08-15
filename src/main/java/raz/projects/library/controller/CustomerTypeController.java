@@ -33,7 +33,7 @@ public class CustomerTypeController {
     public ResponseEntity<CustomerTypePageDto> getTypesPage (
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
             @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
-            @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
+            @RequestParam(value = "sortBy", required = false, defaultValue = "name") String sortBy,
             @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir,
             @RequestParam(value = "name", required = false ) String name,
             @RequestParam(value = "days", required = false) Integer days,

@@ -21,11 +21,11 @@ import java.time.LocalDate;
 public class CustomerRequestDto {
 
     @NotNull
-    @Size(min = 2,  max = 30, message = "first name is must be between 2 - 30 characters")
+    @Size(min = 2,  max = 10, message = "first name is must be between 2 - 30 characters")
     private String firstName;
 
     @NotNull
-    @Size(min = 2,  max = 30, message = "last name is must be between 2 - 30 characters")
+    @Size(min = 2,  max = 10, message = "last name is must be between 2 - 30 characters")
     private String lastName;
 
     @NotNull
@@ -42,6 +42,7 @@ public class CustomerRequestDto {
     @UniqueTzIsrael
     private String tz;
 
+    @NotNull
     private Gender gender;
 
     private String address;

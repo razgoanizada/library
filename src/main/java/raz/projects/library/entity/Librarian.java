@@ -58,5 +58,7 @@ public class Librarian {
     @JoinColumn(name = "permissions_permission")
     private Permissions permission;
 
+    private String image;
+
     private LocalDateTime lastLogin;
 }

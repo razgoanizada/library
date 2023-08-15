@@ -19,17 +19,18 @@ import java.time.LocalDate;
 public class CustomerUpdate {
 
     @NotNull
-    @Size(min = 2,  max = 30, message = "first name is must be between 2 - 30 characters")
+    @Size(min = 2,  max = 10, message = "first name is must be between 2 - 30 characters")
     private String firstName;
 
     @NotNull
-    @Size(min = 2,  max = 30, message = "last name is must be between 2 - 30 characters")
+    @Size(min = 2,  max = 10, message = "last name is must be between 2 - 30 characters")
     private String lastName;
 
     @NotNull
     @Size(min = 9, max = 11, message = "Invalid phone number") // 9: 031234567 10:0524046007 11: 052-4046007
     private String phone;
 
+    @NotNull
     private Gender gender;
 
     private String address;

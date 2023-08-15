@@ -75,7 +75,7 @@ public class BookCategoriesServiceImpl implements BookCategoriesService {
         }
         catch (DataIntegrityViolationException exception) {
             throw new BadRequestException(
-                    "add book -category ", category.getId(), "This book - category is already in the library");
+                    "add book -category ", category.getId(), "This category is already in the library");
         }
     }
 
@@ -84,7 +84,7 @@ public class BookCategoriesServiceImpl implements BookCategoriesService {
 
         var category = bookCategoriesRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException(
-                        "get book - category" ,id, "This book - category doesn't exist in the library")
+                        "get book - category" ,id, "This category doesn't exist in the library")
         );
 
         return mapper.map(category, BookCategoriesResponseDto.class);
@@ -95,7 +95,7 @@ public class BookCategoriesServiceImpl implements BookCategoriesService {
 
         var category = bookCategoriesRepository.findById(id).orElseThrow(
                 () -> new BadRequestException(
-                        "update book - category", id, "This book - category doesn't exist in the library")
+                        "update book - category", id, "This category doesn't exist in the library")
         );
 
         category.setName(dto.getName());
@@ -106,7 +106,7 @@ public class BookCategoriesServiceImpl implements BookCategoriesService {
         }
         catch (DataIntegrityViolationException exception) {
             throw new BadRequestException(
-                    "add book -category ", category.getId(), "This book - category is already in the library");
+                    "add book -category ", category.getId(), "This category is already in the library");
         }
     }
 
@@ -116,7 +116,7 @@ public class BookCategoriesServiceImpl implements BookCategoriesService {
         var exists = bookCategoriesRepository.existsById(id);
         var category = bookCategoriesRepository.findById(id).orElseThrow(
                 () -> new BadRequestException(
-                        "delete book - category", id, "This book - category doesn't exist in the library")
+                        "delete book - category", id, "This category doesn't exist in the library")
         );
 
         List<Book> books = bookRepository.findAllByBookCategories(category);

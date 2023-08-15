@@ -21,21 +21,22 @@ import java.time.LocalDate;
 public class LibrarianRequestDto {
 
     @NotNull
-    @Size(min = 2,  max = 30, message = "first name is must be between 2 - 30 characters")
+    @Size(min = 2,  max = 10, message = "first name is must be between 2 - 10 characters")
     private String firstName;
 
     @NotNull
-    @Size(min = 2,  max = 30, message = "last name is must be between 2 - 30 characters")
+    @Size(min = 2,  max = 10, message = "last name is must be between 2 - 10 characters")
     private String lastName;
 
     @NotNull
     @UniqueUserName
-    @Size(min = 3, max = 15, message = "User name should be between 3-15 characters")
+    @Size(min = 3, max = 10, message = "User name should be between 3-10 characters")
     private String userName;
 
     @NotNull
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?\\W).{8,20}$",
-            message = "The password must be at least 8 characters long, an uppercase letter, a lowercase letter, a number, and a character")
+            message = "The password must be at least 8 characters long," +
+                    " an uppercase letter, a lowercase letter, a number, and a character")
     private String password;
 
     @NotNull
@@ -52,8 +53,10 @@ public class LibrarianRequestDto {
     @UniqueTzIsrael
     private String tz;
 
+    @NotNull
     private Gender gender;
 
+    @Size(max = 20, message = "The address cannot be more than 20 characters")
     private String address;
 
     @Past(message = "Date of birth should be in the past")

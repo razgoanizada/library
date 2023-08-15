@@ -15,7 +15,7 @@ public interface CustomerService {
 
     CustomerPageDto getCustomersPage(
             int pageNo, int pageSize, String sortBy, String sortDir,
-            String type, String firstName, String lastName, String phone, String tz, String addedBy, Boolean isActive);
+            String customerType, String firstName, String lastName, String phone, String tz, String addedBy, Boolean isActive);
     CustomerResponseDto addCustomer(CustomerRequestDto dto, Authentication authentication);
     CustomerResponseDto getCustomerById(long id);
     CustomerResponseDto updateCustomerById (CustomerUpdate dto, long id);

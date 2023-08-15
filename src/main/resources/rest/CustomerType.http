@@ -1,6 +1,6 @@
 ### all types
 GET http://localhost:8081/api/v1/customer-type
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 
 ### all types page
 GET http://localhost:8081/api/v1/customer-type/page?amount=3&days=4&name=ra
@@ -12,7 +12,7 @@ Content-Type: application/json
 Authorization: Basic admin Password1!
 
 {
-  "name": "",
+  "name": "pro",
   "days": 2,
   "amount": 1
 }

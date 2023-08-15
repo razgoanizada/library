@@ -15,11 +15,11 @@ import lombok.NoArgsConstructor;
 public class BookRequestDto {
 
     @NotNull
-    @Size(min = 2,  max = 30, message = "name is must be between 2 - 30 characters")
+    @Size(min = 2,  max = 15, message = "name is must be between 2 - 15 characters")
     private String name;
 
     @NotNull
-    @Size(min = 2, max = 30, message = "name is must be between 2 - 30 characters")
+    @Size(min = 2, max = 10, message = "name is must be between 2 - 10 characters")
     private String author;
 
     @NotNull

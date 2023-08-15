@@ -77,12 +77,12 @@ public class BookServiceImpl implements BookService{
                             root.get("bookcase")), "%" + bookcase.toLowerCase() + "%" ));
         }
 
-        if (bookCategories != null) {
+        if (bookCategories != null && !bookCategories.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
                     criteriaBuilder.equal(root.get("bookCategories"), bookCategories));
         }
 
-        if (addedBy != null) {
+        if (addedBy != null && !addedBy.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
                     criteriaBuilder.equal(root.get("addedBy"), addedBy));
         }

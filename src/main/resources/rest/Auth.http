@@ -3,8 +3,8 @@ POST http://localhost:8081/api/v1/login
 Content-Type: application/json
 
 {
-  "userName": "admin2",
-  "password": "Raz12345!"
+  "userName": "pro",
+  "password": "666666Raz!"
 }
 
 ### change password

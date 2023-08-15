@@ -54,11 +54,11 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
     @Override
     public LibrarianPageDto getLibrariansPage(
             int pageNo, int pageSize, String sortBy, String sortDir,
-            String permission, String firstName, String lastName, String phone, String tz, String useName) {
+            String permission, String firstName, String lastName, String phone, String tz, String userName) {
 
         Specification<Librarian> specification = Specification.where(null);
 
-        if (permission != null) {
+        if (permission != null && !permission.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
                     criteriaBuilder.equal(root.get("permission"), permission));
         }
@@ -87,10 +87,10 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
                             root.get("tz")), "%" + tz.toLowerCase() + "%" ));
         }
 
-        if (useName != null && !useName.isEmpty()) {
+        if (userName != null && !userName.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
                     criteriaBuilder.like(criteriaBuilder.lower(
-                            root.get("useName")), "%" + useName.toLowerCase() + "%" ));
+                            root.get("userName")), "%" + userName.toLowerCase() + "%" ));
         }
 
         Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.Direction.fromString(sortDir), sortBy);
@@ -124,6 +124,7 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
         var librarian =  mapper.map(dto, Librarian.class);
         librarian.setPassword(passwordEncoder.encode(dto.getPassword()));
         librarian.setPermission(permission);
+        librarian.setImage(permission.getImage());
 
         librarianRepository.save(librarian);
 
@@ -168,11 +169,25 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
     @Override
     public LibrarianResponseDto updateLibrarianById(LibrarianUpdate dto, Long id) {
 
+        Permissions permission =  permissionsRepository.findPermissionsByPermissionIgnoreCase(dto.getPermission());
+
+        if (permission == null) {
+            throw new BadRequestException(
+                    "add librarian - permissions",
+                    dto.getPermission(),
+                    "This permissions doesn't exist in the library");
+        }
+
 
         var librarian = librarianRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException(
                         "get librarian" ,id, "This librarian doesn't exist in the library")
         );
+
+        if (librarian.getUserName().equals("admin")) {
+            throw new BadRequestException(
+                    "update librarian", "Unable to update admin user");
+        }
 
         librarian.setFirstName(dto.getFirstName());
         librarian.setLastName(dto.getLastName());
@@ -180,7 +195,9 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
         librarian.setGender(dto.getGender());
         librarian.setAddress(dto.getAddress());
         librarian.setDateOfBirth(dto.getDateOfBirth());
-        librarian.getPermission().setPermission(dto.getPermission());
+        librarian.setPermission(permission);
+        librarian.setImage(permission.getImage());
+
 
         var saved = librarianRepository.save(librarian);
 
@@ -197,25 +214,20 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
                         "get librarian" ,id, "This librarian doesn't exist in the library")
         );
 
+        if (librarian.getUserName().equals("admin")) {
+            throw new BadRequestException(
+                    "update librarian", "Unable to update admin user");
+        }
+
         return change(dto, librarian);
     }
 
-    private LibrarianResponseDto change(LibrarianChangePassword dto, Librarian librarian) {
+    public LibrarianResponseDto change(LibrarianChangePassword dto, Librarian librarian) {
         librarian.setPassword(passwordEncoder.encode(dto.getNewPassword()));
 
         var saved = librarianRepository.save(librarian);
 
         return mapper.map(saved, LibrarianResponseDto.class);
-    }
-
-    public LibrarianResponseDto librarianChangePassword(LibrarianChangePassword dto, String userName){
-
-        var librarian = librarianRepository.findLibrarianByUserNameIgnoreCase(userName).orElseThrow(
-                () -> new ResourceNotFoundException(
-                        "get librarian" ,userName, "This librarian doesn't exist in the library")
-        );
-
-        return change(dto, librarian);
     }
 
     @Override
@@ -228,7 +240,6 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
         );
 
         if (librarian.getUserName().equals("admin")) {
-
             throw new BadRequestException(
                     "delete librarian", "Unable to delete admin user");
         }
@@ -260,8 +271,6 @@ public class LibrarianServiceImpl implements LibrarianService, UserDetailsServic
 
         return mapper.map(librarian, LibrarianResponseDto.class);
     }
-
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

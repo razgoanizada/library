@@ -45,9 +45,9 @@ public class LibraryApplication  implements CommandLineRunner {
             permissionsRepository.save(new Permissions(1L, "admin",
                     "https://images.pexels.com/photos/13420005/pexels-photo-13420005.jpeg?auto=compress&cs=tinysrgb&w=1600"));
             permissionsRepository.save(new Permissions(2L, "pro",
-                    "https://images.pexels.com/photos/16263862/pexels-photo-16263862/free-photo-of-people-school-portrait-research.jpeg?auto=compress&cs=tinysrgb&w=1600"));
+                    "https://images.pexels.com/photos/9572566/pexels-photo-9572566.jpeg?auto=compress&cs=tinysrgb&w=1600"));
             permissionsRepository.save(new Permissions(3L, "simple",
-                    "https://images.pexels.com/photos/11885954/pexels-photo-11885954.jpeg?auto=compress&cs=tinysrgb&w=1600"));
+                    "https://media.istockphoto.com/id/910852368/photo/student-searching-books.jpg?b=1&s=612x612&w=0&k=20&c=iZ85GHZWIwM1aaHG5vEnDCgZbpfxvlCvM2O0E8os0k8="));
         }
 
         if (librarianRepository.findAll().size() == 0) {

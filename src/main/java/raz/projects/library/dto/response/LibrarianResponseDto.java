@@ -25,5 +25,6 @@ public class LibrarianResponseDto {
     private LocalDate dateOfBirth;
     private Date creationDate;
     private String permission;
+    private String image;
     private LocalDateTime lastLogin;
 }

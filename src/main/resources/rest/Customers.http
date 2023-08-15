@@ -1,43 +1,44 @@
 ### ALL cutomers
 GET http://localhost:8081/api/v1/customers
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 
 ### get librarians page
-GET http://localhost:8081/api/v1/customers/page
-Authorization: Basic admin2 Raz12345!
+GET http://localhost:8081/api/v1/customers/page?pageNo=&customerType=
+Authorization: Basic admin Password1!
 
 ### add customer
 POST http://localhost:8081/api/v1/customers/add
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 Content-Type: application/json
 
 {
   "firstName": "raz",
   "lastName": "cohen",
-  "email": "asdsa@gmail.com",
-  "tz": "318969433",
+  "email": "dfdf@gmail.com",
+  "tz": "999563141",
   "phone": "0524046007",
   "address": "dsfsf",
-  "customerTypeName": "raz",
+  "customerTypeName": "pro",
   "gender": "male"
 }
 
 ###get customer by id
-GET http://localhost:8081/api/v1/customers/2
-Authorization: Basic admin2 Raz12345!
+GET http://localhost:8081/api/v1/customers/52
+Authorization: Basic admin Password1!
 
 ### udpdate customer by id
-PUT http://localhost:8081/api/v1/customers/2
-Authorization: Basic admin2 Raz12345!
+PUT http://localhost:8081/api/v1/customers/52
+Authorization: Basic admin Password1!
 Content-Type: application/json
 
 {
   "firstName": "raz",
   "lastName": "cohen",
   "phone": "0523561529",
-  "customerTypeName": "raz"
+  "customerTypeName": "pro",
+  "gender": "female"
 }
 
 ### update customer - is active
-PUT http://localhost:8081/api/v1/customers/active/1
-Authorization: Basic admin2 Raz12345!
+PUT http://localhost:8081/api/v1/customers/active/202
+Authorization: Basic admin Password1!

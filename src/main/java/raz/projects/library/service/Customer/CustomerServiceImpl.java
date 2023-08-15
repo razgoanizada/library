@@ -42,14 +42,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerPageDto getCustomersPage(
             int pageNo, int pageSize, String sortBy, String sortDir,
-            String type, String firstName, String lastName, String phone, String tz, String addedBy, Boolean isActive) {
+            String customerType, String firstName, String lastName, String phone, String tz, String addedBy, Boolean isActive) {
 
         Specification<Customer> specification = Specification.where(null);
-
-        if (type != null) {
-            specification = specification.and((root, query, criteriaBuilder) ->
-                    criteriaBuilder.equal(root.get("type"), type));
-        }
 
         if (firstName != null && !firstName.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
@@ -75,9 +70,14 @@ public class CustomerServiceImpl implements CustomerService {
                             root.get("tz")), "%" + tz.toLowerCase() + "%" ));
         }
 
-        if (addedBy != null) {
+        if (addedBy != null && !addedBy.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
                     criteriaBuilder.equal(root.get("addedBy"), addedBy));
+        }
+
+        if (customerType != null && !customerType.isEmpty()) {
+            specification = specification.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(root.get("customerType"), customerType));
         }
 
         if (isActive != null) {

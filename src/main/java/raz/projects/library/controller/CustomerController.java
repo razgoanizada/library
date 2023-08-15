@@ -31,10 +31,10 @@ public class CustomerController {
     @GetMapping ("/page")
     public ResponseEntity<CustomerPageDto> getCustomersPage (
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
             @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
             @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir,
-            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "customerType", required = false) String customerType,
             @RequestParam(value = "firstName", required = false) String firstName,
             @RequestParam(value = "lastName", required = false) String lastName,
             @RequestParam(value = "phone", required = false) String phone,
@@ -44,7 +44,7 @@ public class CustomerController {
     ) {
 
         return ResponseEntity.ok(customerService.getCustomersPage(
-                pageNo, pageSize, sortBy, sortDir, type, firstName, lastName, phone, tz, addedBy, isActive));
+                pageNo, pageSize, sortBy, sortDir, customerType, firstName, lastName, phone, tz, addedBy, isActive));
     }
 
     @PostMapping("/add")

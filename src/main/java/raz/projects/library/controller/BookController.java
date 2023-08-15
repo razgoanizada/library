@@ -23,7 +23,6 @@ public class BookController {
 
     private final BookService bookService;
 
-
     @GetMapping()
     public ResponseEntity<List<BookResponseDto>> getBooks () {
 
@@ -34,8 +33,8 @@ public class BookController {
     public ResponseEntity<BookPageDto> getBooksPage (
 
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize,
-            @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
+            @RequestParam(value = "sortBy", required = false, defaultValue = "name") String sortBy,
             @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "author", required = false) String author,

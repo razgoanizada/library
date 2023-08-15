@@ -1,19 +1,19 @@
 ### get all borrowed
 GET http://localhost:8081/api/v1/borrow
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 
 ### get borrow page
 GET http://localhost:8081/api/v1/borrow/page?returnDateEnd=2023-08-15
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 
 ### add borrow
 POST http://localhost:8081/api/v1/borrow/add
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 Content-Type: application/json
 
 {
   "customerId": 52,
-  "bookId": 2
+  "bookId": 1
 }
 
 ### get boroow by id

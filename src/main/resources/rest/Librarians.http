@@ -1,47 +1,47 @@
 ### ALL librarians
 GET http://localhost:8081/api/v1/librarians
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjIiLCJpYXQiOjE2OTAzMDM4MzgsImV4cCI6MTY5MDMwMzg0OH0.dESZo4sqwS-GTP5TE-Ern6fkaqkt89DQAdOGQzFoF6MvlNKeVbWm5t7vSf0fXSd2nWaSDEOVEKyFpAWJYUZI9w
+Authorization: Basic admin Password1!
 
 ### get librarians page
-GET http://localhost:8081/api/v1/librarians/page?firstName=raz&permission=4
-Authorization: Basic simple Password6!
+GET http://localhost:8081/api/v1/librarians/page?permission=3
+Authorization: Basic admin Password1!
 
 ### add librarian
 POST http://localhost:8081/api/v1/librarians/add
 Content-Type: application/json
-Authorization: Basic admin2 Password6!
+Authorization: Basic admin Password1!
 
 {
   "firstName": "razg",
   "lastName": "goanizada",
-  "userName": "simple",
+  "userName": "sdf2",
   "password": "Password6!",
-  "email": "sdssd@dsfsdf.com",
+  "email": "fsdfsdfdsf@d.com",
   "phone": "052404607",
-  "tz": "999595762",
+  "tz": "999311301",
   "address": "kfar sava",
   "dateOfBirth": "2020-01-01",
   "gender": "male",
-  "permission": "simple"
+  "permission": "pro"
 }
 
 ###get librarian by id
-GET http://localhost:8081/api/v1/librarians/152
-Authorization: Basic admin2 Raz12345!
+GET http://localhost:8081/api/v1/librarians/2
+Authorization: Basic admin Password1!
 
 ### update librarian
-PUT http://localhost:8081/api/v1/librarians/152
+PUT http://localhost:8081/api/v1/librarians/2
 Content-Type: application/json
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 
 {
   "firstName": "dfsfsdf",
   "lastName": "fdsfdsfsdf",
   "gender": "female",
   "address": "dsfsdfsf",
-  "dateOfBirth": "2021-08-08",
+  "dateOfBirth": "2020-01-01",
   "phone": "0524046007",
-  "permission": "pro"
+  "permission": "simple"
 }
 
 ### change password

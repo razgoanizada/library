@@ -47,13 +47,12 @@ public class LogServiceImpl implements LogService {
             int pageNo, int pageSize, String sortBy, String sortDir,
             String userName, Boolean isLogin, String DateStart, String DateEnd) {
 
-
         Specification<Log> specification = Specification.where(null);
 
-
-        if (userName != null) {
+        if (userName != null && !userName.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
-                    criteriaBuilder.equal(root.get("username"), userName));
+                    criteriaBuilder.like(criteriaBuilder.lower(
+                            root.get("username")), "%" + userName.toLowerCase() + "%" ));
         }
 
 

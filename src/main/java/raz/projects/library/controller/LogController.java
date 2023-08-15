@@ -28,12 +28,12 @@ public class LogController {
     }
 
     @GetMapping("/page")
-    public ResponseEntity<LogPageDto> getBorrowedPage (
+    public ResponseEntity<LogPageDto> getLogsPage (
 
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
             @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
-            @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir,
+            @RequestParam(value = "sortDir", required = false, defaultValue = "desc") String sortDir,
             @RequestParam(value = "userName", required = false) String userName,
             @RequestParam(value = "isLogin", required = false) Boolean isLogin,
             @RequestParam(value = "DateStart", required = false,

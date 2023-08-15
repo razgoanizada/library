@@ -25,7 +25,6 @@ public class LibrarianController {
     private final LibrarianService librarianService;
 
 
-
     @GetMapping
     public ResponseEntity<List<LibrarianResponseDto>> getLibrarian () {
 
@@ -36,8 +35,8 @@ public class LibrarianController {
     @GetMapping ("/page")
     public ResponseEntity<LibrarianPageDto> getLibrarianPage (
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize,
-            @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
+            @RequestParam(value = "sortBy", required = false, defaultValue = "userName") String sortBy,
             @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir,
             @RequestParam(value = "permission", required = false) String permission,
             @RequestParam(value = "firstName", required = false) String firstName,
@@ -50,8 +49,6 @@ public class LibrarianController {
         return ResponseEntity.ok(librarianService.getLibrariansPage(
                 pageNo, pageSize, sortBy, sortDir, permission, firstName, lastName, phone, tz, userName));
     }
-
-
 
     @PostMapping("/add")
     public ResponseEntity<LibrarianResponseDto> addLibrarian (
