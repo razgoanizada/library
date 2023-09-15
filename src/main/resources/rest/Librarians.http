@@ -3,7 +3,7 @@ GET http://localhost:8081/api/v1/librarians
 Authorization: Basic admin Password1!
 
 ### get librarians page
-GET http://localhost:8081/api/v1/librarians/page?permission=3
+GET http://localhost:8081/api/v1/librarians/page
 Authorization: Basic admin Password1!
 
 ### add librarian

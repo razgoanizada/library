@@ -32,7 +32,7 @@ public class CustomerController {
     public ResponseEntity<CustomerPageDto> getCustomersPage (
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
             @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
-            @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
+            @RequestParam(value = "sortBy", required = false, defaultValue = "firstName") String sortBy,
             @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir,
             @RequestParam(value = "customerType", required = false) String customerType,
             @RequestParam(value = "firstName", required = false) String firstName,

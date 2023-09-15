@@ -3,7 +3,7 @@ GET http://localhost:8081/api/v1/borrow
 Authorization: Basic admin Password1!
 
 ### get borrow page
-GET http://localhost:8081/api/v1/borrow/page?returnDateEnd=2023-08-15
+GET http://localhost:8081/api/v1/borrow/page?returnDateEnd=&pageSize=1000
 Authorization: Basic admin Password1!
 
 ### add borrow
@@ -12,8 +12,8 @@ Authorization: Basic admin Password1!
 Content-Type: application/json
 
 {
-  "customerId": 52,
-  "bookId": 1
+  "customerId": 253,
+  "bookId": 56
 }
 
 ### get boroow by id
@@ -22,7 +22,7 @@ Authorization: Basic admin2 Raz12345!
 
 ### extra time borrow
 PUT http://localhost:8081/api/v1/borrow/extra-time/102
-Authorization: Basic admin2 Raz12345!
+Authorization: Basic admin Password1!
 Content-Type: application/json
 
 {
@@ -30,5 +30,5 @@ Content-Type: application/json
 }
 
 ### return book
-PUT http://localhost:8081/api/v1/borrow/return-book/152
-Authorization: Basic admin2 Raz12345!
+PUT http://localhost:8081/api/v1/borrow/return-book/1
+Authorization: Basic admin Password1!

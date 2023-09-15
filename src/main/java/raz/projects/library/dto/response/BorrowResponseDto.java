@@ -16,7 +16,7 @@ public class BorrowResponseDto {
     private Long bookId;
     private LocalDate borrowingDate;
     private LocalDate returnDate;
-    private LocalDate retrievedOn;
+    private LocalDate returnedOn;
     private boolean returnBook;
     private String addedByUserName;
 }

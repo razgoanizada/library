@@ -17,7 +17,6 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@PreAuthorize("hasAuthority('admin')")
 @RequestMapping("/api/v1/customer-type")
 public class CustomerTypeController {
 
@@ -52,6 +51,7 @@ public class CustomerTypeController {
                 pageNo, pageSize, sortBy, sortDir, name, days, amount));
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @PostMapping("/add")
     public ResponseEntity<CustomerTypeResponseDto> addCustomerType (
             @RequestBody @Valid CustomerTypeRequestDto dto, UriComponentsBuilder uriComponentsBuilder) {
@@ -69,6 +69,7 @@ public class CustomerTypeController {
         return ResponseEntity.ok(customerTypeService.getTypeById(id));
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @PutMapping("/{id}")
     public ResponseEntity<CustomerTypeResponseDto> updateTypeById (@PathVariable @Valid @NotNull Long id,
                                                                          @Valid @RequestBody CustomerTypeUpdateDto dto) {
@@ -76,6 +77,7 @@ public class CustomerTypeController {
         return ResponseEntity.accepted().body(customerTypeService.updateType(dto, id));
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomerTypeResponseDto> deleteTypeById (@PathVariable @Valid @NotNull Long id) {
 

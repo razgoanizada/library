@@ -21,8 +21,8 @@ Authorization: Basic admin Password1!
 }
 
 ###get book by id
-GET http://localhost:8081/api/v1/books/352
-Authorization: Basic admin2 Raz12345!
+GET http://localhost:8081/api/v1/books/203
+Authorization: Basic admin Password1!
 
 ### update book
 PUT http://localhost:8081/api/v1/books/153

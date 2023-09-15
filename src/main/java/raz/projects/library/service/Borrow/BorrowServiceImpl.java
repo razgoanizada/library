@@ -50,21 +50,19 @@ public class BorrowServiceImpl implements BorrowService {
             String borrowingDateStart, String borrowingDateEnd,
             String returnDateStart, String returnDateEnd) {
 
-
         Specification<Borrow> specification = Specification.where(null);
 
-
-        if (customerId != null) {
+        if (customerId != null && !customerId.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
-                    criteriaBuilder.equal(root.get("customerId"), customerId));
+                    criteriaBuilder.equal(root.get("customer"), customerId));
         }
 
-        if (bookId != null) {
+        if (bookId != null && !bookId.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
-                    criteriaBuilder.equal(root.get("bookId"), bookId));
+                    criteriaBuilder.equal(root.get("book"), bookId));
         }
 
-        if (addedBy != null) {
+        if (addedBy != null && !addedBy.isEmpty()) {
             specification = specification.and((root, query, criteriaBuilder) ->
                     criteriaBuilder.equal(root.get("addedBy"), addedBy));
         }
@@ -74,7 +72,7 @@ public class BorrowServiceImpl implements BorrowService {
                     criteriaBuilder.equal(root.get("returnBook"), returnBook));
         }
 
-        if (borrowingDateStart != null && borrowingDateEnd != null) {
+        if (borrowingDateStart != null && borrowingDateEnd != null ) {
             LocalDate startDate = LocalDate.parse(borrowingDateStart);
             LocalDate endDate = LocalDate.parse(borrowingDateEnd);
             specification = specification.and((root, query, criteriaBuilder) ->
@@ -87,7 +85,6 @@ public class BorrowServiceImpl implements BorrowService {
             specification = specification.and((root, query, criteriaBuilder) ->
                     criteriaBuilder.between(root.get("returnDate"), startDate, endDate));
         }
-
 
         Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.Direction.fromString(sortDir), sortBy);
 
@@ -220,7 +217,7 @@ public class BorrowServiceImpl implements BorrowService {
 
         else {
             borrow.setReturnBook(true);
-            borrow.setRetrievedOn(LocalDate.now());
+            borrow.setReturnedOn(LocalDate.now());
         }
 
         var save = borrowRepository.save(borrow);

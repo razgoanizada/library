@@ -30,7 +30,7 @@ public class Borrow {
 
     private LocalDate returnDate;
 
-    private LocalDate retrievedOn;
+    private LocalDate returnedOn;
 
     private boolean returnBook;
 

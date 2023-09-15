@@ -33,9 +33,9 @@ public class BorrowController {
     public ResponseEntity<BorrowPageDto> getBorrowedPage (
 
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
             @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy,
-            @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir,
+            @RequestParam(value = "sortDir", required = false, defaultValue = "desc") String sortDir,
             @RequestParam(value = "customerId", required = false) String customerId,
             @RequestParam(value = "bookId", required = false) String bookId,
             @RequestParam(value = "addedBy", required = false) String addedBy,

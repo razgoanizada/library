@@ -16,7 +16,6 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@PreAuthorize("hasAuthority('admin')")
 @RequestMapping("/api/v1/books-categories")
 public class BookCategoriesController {
 
@@ -41,6 +40,7 @@ public class BookCategoriesController {
                 pageNo, pageSize, sortBy, sortDir, name));
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @PostMapping("/add")
     public ResponseEntity<BookCategoriesResponseDto> addCategory (
             @RequestBody @Valid BookCategoriesRequestDto dto, UriComponentsBuilder uriComponentsBuilder) {
@@ -52,12 +52,14 @@ public class BookCategoriesController {
         return ResponseEntity.created(uri).body(responseDto);
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<BookCategoriesResponseDto> getCategoryById (@PathVariable @Valid @NotNull Long id) {
 
         return ResponseEntity.ok(bookCategoriesService.getCategoryById(id));
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @PutMapping("/{id}")
     public ResponseEntity<BookCategoriesResponseDto> updateCategoryById (@PathVariable @Valid @NotNull Long id,
                                                                @Valid @RequestBody BookCategoriesRequestDto dto) {
@@ -65,6 +67,7 @@ public class BookCategoriesController {
         return ResponseEntity.accepted().body(bookCategoriesService.updateCategory(dto, id));
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<BookCategoriesResponseDto> deleteCategoryById (@PathVariable @Valid @NotNull Long id) {
 

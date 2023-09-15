@@ -18,7 +18,6 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@PreAuthorize("hasAuthority('admin')")
 @RequestMapping("/api/v1/librarians")
 public class LibrarianController {
 
@@ -50,6 +49,7 @@ public class LibrarianController {
                 pageNo, pageSize, sortBy, sortDir, permission, firstName, lastName, phone, tz, userName));
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @PostMapping("/add")
     public ResponseEntity<LibrarianResponseDto> addLibrarian (
             @RequestBody @Valid LibrarianRequestDto dto, UriComponentsBuilder uriComponentsBuilder) {
@@ -69,6 +69,7 @@ public class LibrarianController {
     }
 
 
+    @PreAuthorize("hasAuthority('admin')")
     @PutMapping("/{id}")
     public ResponseEntity<LibrarianResponseDto> updateLibrarianById (@PathVariable @Valid @NotNull Long id,
                                                                 @Valid @RequestBody LibrarianUpdate dto) {
@@ -76,6 +77,7 @@ public class LibrarianController {
     }
 
 
+    @PreAuthorize("hasAuthority('admin')")
     @PutMapping("/change-password/{id}")
     public ResponseEntity<LibrarianResponseDto> changePassword (@PathVariable @Valid @NotNull Long id,
                                                                @Valid @RequestBody LibrarianChangePassword dto) {
@@ -83,6 +85,7 @@ public class LibrarianController {
     }
 
 
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<LibrarianResponseDto> deleteLibrarianById (@PathVariable Long id) {
         return ResponseEntity.accepted().body(librarianService.deleteLibrarianById(id));
