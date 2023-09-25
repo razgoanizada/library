@@ -3,7 +3,7 @@ GET http://localhost:8081/api/v1/borrow
 Authorization: Basic admin Password1!
 
 ### get borrow page
-GET http://localhost:8081/api/v1/borrow/page?returnDateEnd=&pageSize=1000
+GET http://localhost:8081/api/v1/borrow/page?returnBook=true&addedBy=1
 Authorization: Basic admin Password1!
 
 ### add borrow
